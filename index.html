@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Health & Epidemiology — MLS Study Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --teal:       #0d9488;
+    --teal-light: #ccfbf1;
+    --teal-dark:  #0f766e;
+    --navy:       #1e3a5f;
+    --navy-mid:   #2a4a7a;
+    --gold:       #d97706;
+    --gold-light: #fef3c7;
+    --rose:       #e11d48;
+    --rose-light: #ffe4e6;
+    --violet:     #7c3aed;
+    --violet-light:#ede9fe;
+    --green:      #16a34a;
+    --green-light:#dcfce7;
+    --slate:      #475569;
+    --slate-light:#f1f5f9;
+    --white:      #ffffff;
+    --bg:         #f8fafc;
+    --text:       #1e293b;
+    --text-muted: #64748b;
+    --border:     #e2e8f0;
+    --radius:     10px;
+    --shadow:     0 4px 24px rgba(0,0,0,0.08);
+    --shadow-sm:  0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── HEADER ─────────────────────────────────── */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, var(--teal-dark) 100%);
+    color: white;
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #a5f3fc;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  header h1 span { color: #5eead4; }
+  header p.subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin: 0 auto 24px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .header-meta span {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .header-meta span::before {
+    content: '●';
+    color: #5eead4;
+    font-size: 8px;
+  }
+
+  /* ── NAV BAR ─────────────────────────────────── */
+  nav {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    overflow-x: auto;
+    gap: 2px;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  nav a {
+    white-space: nowrap;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--slate);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  nav a:hover { color: var(--teal-dark); border-bottom-color: var(--teal); }
+  nav a.active { color: var(--teal-dark); border-bottom-color: var(--teal); }
+
+  /* ── DASHBOARD ──────────────────────────────── */
+  #dashboard-wrapper {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    padding: 0 20px;
+  }
+  #dashboard-toggle {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--navy);
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+  #dashboard-toggle:hover { background: var(--slate-light); }
+  #dashboard-toggle .left { display: flex; align-items: center; gap: 10px; }
+  #dashboard-toggle .icon {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--teal), var(--navy-mid));
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px;
+  }
+  .chevron { transition: transform 0.3s; font-size: 11px; color: var(--slate); }
+  .chevron.open { transform: rotate(180deg); }
+
+  #dashboard-panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 20px;
+    display: none;
+    box-shadow: var(--shadow-sm);
+  }
+  #dashboard-panel.open { display: block; }
+
+  .dash-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .dash-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--slate-light);
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .dash-item:hover { background: var(--teal-light); border-color: var(--teal); }
+  .dash-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dash-item span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .progress-bar-wrap {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--green));
+    border-radius: 10px;
+    transition: width 0.8s ease;
+  }
+
+  /* ── MAIN LAYOUT ─────────────────────────────── */
+  .main-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* ── SECTION WRAPPER ─────────────────────────── */
+  .unit-section {
+    margin-bottom: 56px;
+    scroll-margin-top: 70px;
+  }
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-number {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .section-header .section-sub {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+
+  /* Color coding per section */
+  .s1 .section-number { background: linear-gradient(135deg, #0d9488, #0f766e); }
+  .s2 .section-number { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+  .s3 .section-number { background: linear-gradient(135deg, #d97706, #b45309); }
+  .s4 .section-number { background: linear-gradient(135deg, #e11d48, #be123c); }
+  .s5 .section-number { background: linear-gradient(135deg, #0369a1, #0c4a6e); }
+
+  .s1 { border-left: 4px solid var(--teal); padding-left: 20px; }
+  .s2 { border-left: 4px solid var(--violet); padding-left: 20px; }
+  .s3 { border-left: 4px solid var(--gold); padding-left: 20px; }
+  .s4 { border-left: 4px solid var(--rose); padding-left: 20px; }
+  .s5 { border-left: 4px solid #0369a1; padding-left: 20px; }
+
+  /* ── CONTENT BLOCKS ──────────────────────────── */
+  .content-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .content-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .content-card h3::before {
+    content: '';
+    width: 3px; height: 16px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .s1 .content-card h3::before { background: var(--teal); }
+  .s2 .content-card h3::before { background: var(--violet); }
+  .s3 .content-card h3::before { background: var(--gold); }
+  .s4 .content-card h3::before { background: var(--rose); }
+  .s5 .content-card h3::before { background: #0369a1; }
+
+  .content-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy-mid);
+    margin: 16px 0 8px;
+  }
+  .content-card p { font-size: 14px; color: var(--text); margin-bottom: 10px; }
+  .content-card p:last-child { margin-bottom: 0; }
+
+  /* Blockquote / definition */
+  blockquote {
+    border-left: 4px solid var(--teal);
+    background: var(--teal-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #134e4a;
+  }
+  blockquote strong { font-style: normal; }
+
+  .definition-box {
+    background: var(--violet-light);
+    border-left: 4px solid var(--violet);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 14px;
+    color: #3b0764;
+  }
+  .definition-box strong { display: block; margin-bottom: 4px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .alert-box {
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    color: #78350f;
+  }
+  .alert-box::before { content: '⚠️  '; }
+
+  /* ── TABLES ──────────────────────────────────── */
+  .table-wrap { overflow-x: auto; margin: 14px 0; border-radius: var(--radius); border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--navy); color: white; }
+  thead th { padding: 11px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.3px; }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--slate-light); }
+  tbody td { padding: 10px 14px; vertical-align: top; line-height: 1.5; }
+  tbody tr:nth-child(even) { background: #f8fafc; }
+  tbody tr:nth-child(even):hover { background: var(--slate-light); }
+
+  /* ── NUMBERED LIST ───────────────────────────── */
+  .num-list { counter-reset: item; padding: 0; list-style: none; }
+  .num-list li {
+    counter-increment: item;
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 14px;
+  }
+  .num-list li:last-child { border-bottom: none; }
+  .num-list li::before {
+    content: counter(item);
+    min-width: 24px; height: 24px;
+    background: var(--navy);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── PILL TAGS ───────────────────────────────── */
+  .pill-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pill-teal   { background: var(--teal-light); color: var(--teal-dark); }
+  .pill-violet { background: var(--violet-light); color: var(--violet); }
+  .pill-gold   { background: var(--gold-light); color: var(--gold); }
+  .pill-rose   { background: var(--rose-light); color: var(--rose); }
+  .pill-green  { background: var(--green-light); color: var(--green); }
+  .pill-navy   { background: #dbeafe; color: var(--navy); }
+
+  /* ── CHEAT SHEET BOX ─────────────────────────── */
+  .cheatsheet {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: white;
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-top: 20px;
+  }
+  .cheatsheet h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #5eead4;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cheatsheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .cs-item {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .cs-item strong {
+    display: block;
+    color: #fde68a;
+    margin-bottom: 4px;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── FORMULA BOX ─────────────────────────────── */
+  .formula {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #a5f3fc;
+    overflow-x: auto;
+  }
+  .formula .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  /* ── MEDICAL TERM LINKS ──────────────────────── */
+  a.medterm {
+    color: var(--teal-dark);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  a.medterm:hover { color: var(--violet); text-decoration-style: solid; }
+
+  /* ── 2-COLUMN COMPARE ────────────────────────── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 12px 0;
+  }
+  @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-col { background: var(--slate-light); border-radius: 8px; padding: 14px; }
+  .compare-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; font-weight: 700; }
+  .compare-col.teal-col { background: var(--teal-light); }
+  .compare-col.teal-col h4 { color: var(--teal-dark); }
+  .compare-col.rose-col { background: var(--rose-light); }
+  .compare-col.rose-col h4 { color: var(--rose); }
+  .compare-col.violet-col { background: var(--violet-light); }
+  .compare-col.violet-col h4 { color: var(--violet); }
+  .compare-col.gold-col { background: var(--gold-light); }
+  .compare-col.gold-col h4 { color: var(--gold); }
+  .compare-col ul { padding-left: 16px; font-size: 13px; }
+  .compare-col ul li { margin-bottom: 6px; }
+
+  /* ── HIGHLIGHT CALLOUTS ──────────────────────── */
+  .callout {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout.info  { background: #e0f2fe; border: 1px solid #7dd3fc; color: #0c4a6e; }
+  .callout.tip   { background: var(--green-light); border: 1px solid #86efac; color: #14532d; }
+  .callout.key   { background: var(--gold-light); border: 1px solid #fcd34d; color: #78350f; }
+  .callout.warn  { background: var(--rose-light); border: 1px solid #fda4af; color: #9f1239; }
+
+  /* ── PRACTICE QUESTIONS LINK ─────────────────── */
+  #practice-section {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0d9488 100%);
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+    color: white;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  #practice-section::before {
+    content: '📝';
+    font-size: 80px;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.1;
+  }
+  #practice-section h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+  #practice-section p {
+    font-size: 14px;
+    opacity: 0.8;
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+  .practice-btn {
+    display: inline-block;
+    background: white;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .practice-btn:hover { background: var(--gold-light); color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .topics-covered {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .topics-covered span {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+  footer strong { color: rgba(255,255,255,0.9); }
+  footer .footer-links { margin: 10px 0; }
+  footer .footer-links a { color: #5eead4; text-decoration: none; margin: 0 10px; }
+  footer .footer-links a:hover { text-decoration: underline; }
+
+  /* ── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 700px) {
+    header { padding: 32px 16px 28px; }
+    .main-wrap { padding: 20px 14px 40px; }
+    .section-header { flex-direction: column; gap: 10px; }
+    .cheatsheet-grid { grid-template-columns: 1fr; }
+    #practice-section { padding: 28px 20px; }
+    #practice-section::before { display: none; }
+  }
+
+  /* ── SCROLL TOP ──────────────────────────────── */
+  #scroll-top {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    width: 42px; height: 42px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.2s;
+    z-index: 200;
+  }
+  #scroll-top.visible { opacity: 1; }
+  #scroll-top:hover { transform: translateY(-3px); background: var(--teal-dark); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════ -->
+<header>
+  <div class="badge">MLS · Maseno University · Exam Prep</div>
+  <h1>Public Health &amp; <span>Epidemiology</span><br>Complete Study Guide</h1>
+  <p class="subtitle">A comprehensive reference covering all core units — from disease measurement to global health threats. Organized, linked, and exam-ready.</p>
+  <div class="header-meta">
+    <span>5 Core Units</span>
+    <span>Peter Ouma, PhD, MPH</span>
+    <span>Dept. of Medical Laboratory Sciences</span>
+    <span>Maseno University School of Medicine</span>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     STICKY NAV
+════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#s1">Epidemiology Intro</a>
+    <a href="#s2">Public Health Concepts</a>
+    <a href="#s3">Surveillance</a>
+    <a href="#s4">Global Health Threats</a>
+    <a href="#s5">Morbidity &amp; Mortality</a>
+    <a href="#practice-section">Practice Questions</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     DASHBOARD
+════════════════════════════════════════════════ -->
+<div id="dashboard-wrapper">
+  <button id="dashboard-toggle" onclick="toggleDash()">
+    <div class="left">
+      <div class="icon">📊</div>
+      <span>Course Progress Tracker — 5 Units · Click to expand</span>
+    </div>
+    <span class="chevron" id="dash-chevron">▼</span>
+  </button>
+  <div id="dashboard-panel">
+    <div class="dash-title">Units covered in this guide</div>
+    <div class="dash-grid">
+      <a href="#s1" class="dash-item">
+        <div class="dash-dot" style="background:#0d9488"></div>
+        <span>Introduction to Epidemiology</span>
+      </a>
+      <a href="#s2" class="dash-item">
+        <div class="dash-dot" style="background:#7c3aed"></div>
+        <span>Concepts &amp; Principles of Public Health</span>
+      </a>
+      <a href="#s3" class="dash-item">
+        <div class="dash-dot" style="background:#d97706"></div>
+        <span>Overview of Disease Surveillance</span>
+      </a>
+      <a href="#s4" class="dash-item">
+        <div class="dash-dot" style="background:#e11d48"></div>
+        <span>Global Health Threats &amp; Strategies</span>
+      </a>
+      <a href="#s5" class="dash-item">
+        <div class="dash-dot" style="background:#0369a1"></div>
+        <span>Measures of Morbidity &amp; Mortality</span>
+      </a>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label"><span>Units compiled</span><span>5 / 5 complete</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════ -->
+<div class="main-wrap">
+
+<!-- ══════════════════════════════════════════
+     UNIT 1 — INTRODUCTION TO EPIDEMIOLOGY
+═══════════════════════════════════════════ -->
+<section class="unit-section s1" id="s1">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div>
+      <h2>Introduction to Epidemiology</h2>
+      <div class="section-sub">Origins · Definitions · Historical Evolution · Types · Uses · Key Terminology</div>
+    </div>
+  </div>
+
+  <!-- DEFINITION & ETYMOLOGY -->
+  <div class="content-card">
+    <h3>Definition &amp; Etymology</h3>
+    <p><strong>Greek roots:</strong> <em>Epi</em> = upon/among &nbsp;|&nbsp; <em>Demos</em> = people &nbsp;|&nbsp; <em>Logos</em> = study<br>→ <strong>"Study among people"</strong> — what befalls a population</p>
+
+    <blockquote><strong>Gordis (2009):</strong> Epidemiology is the study of how disease is <em>distributed</em> in populations and the <em>factors</em> that determine this distribution.</blockquote>
+    <blockquote><strong>Last (1995):</strong> Epidemiology is the study of the <em>distribution</em> and <em>determinants</em> of health-related events/states in population groups, and the <em>application</em> of this study to the control of health problems.</blockquote>
+
+    <div class="callout key"><div class="callout-icon">🔑</div><div><strong>Core premise:</strong> Disease is NOT randomly distributed in human populations — there are patterns and reasons why some people get sick and others don't.</div></div>
+  </div>
+
+  <!-- COMPONENTS OF DEFINITION -->
+  <div class="content-card">
+    <h3>Components of the Definition</h3>
+    <div class="callout tip"><div class="callout-icon">💡</div><div>There are <strong>6 components</strong> — your lecturer loves this topic. Know all six.</div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Component</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Population</strong></td><td>Focuses on groups/communities, NOT individuals</td></tr>
+          <tr><td>2</td><td><strong>Frequency</strong></td><td>Quantitative science — measures using rates/ratios; morbidity &amp; mortality</td></tr>
+          <tr><td>3</td><td><strong>Health-related conditions</strong></td><td>Not just disease — injuries, births, smoking, poverty, unemployment</td></tr>
+          <tr><td>4</td><td><strong>Distribution</strong></td><td>Patterns by time, place, and person</td></tr>
+          <tr><td>5</td><td><strong>Determinants</strong></td><td>Causes and risk factors that make people prone to disease</td></tr>
+          <tr><td>6</td><td><strong>Application</strong></td><td>Primary goal = identify prevention and control strategies</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info"><div class="callout-icon">📌</div><div><strong>The 3 core pillars:</strong> Disease Frequency (rates &amp; ratios) · Distribution (time, place, person) · Determinants (cause / risk factors)</div></div>
+  </div>
+
+  <!-- DISTRIBUTION: TIME, PLACE, PERSON -->
+  <div class="content-card">
+    <h3>Distribution — Time, Place &amp; Person</h3>
+    <div class="compare-grid">
+      <div class="compare-col teal-col">
+        <h4>👤 Person</h4>
+        <ul><li>Age, gender, ethnicity</li><li>Genetic predisposition</li><li>Concurrent disease</li><li>Diet, exercise, smoking</li><li>Risk-taking behaviour</li><li>SES, education, occupation</li></ul>
+      </div>
+      <div class="compare-col violet-col">
+        <h4>📍 Place</h4>
+        <ul><li>Presence of agents / vectors</li><li>Climate, geology</li><li>Population density</li><li>Economic development</li><li>Nutritional practices</li><li>Medical practices</li></ul>
+      </div>
+    </div>
+    <div class="compare-grid" style="margin-top:0">
+      <div class="compare-col gold-col">
+        <h4>⏱ Time</h4>
+        <ul><li>Calendar time</li><li>Time since an event</li><li>Physiologic cycles</li><li>Age (time since birth)</li><li>Seasonality</li><li>Temporal trends</li></ul>
+      </div>
+      <div class="compare-col rose-col">
+        <h4>🔬 Analytic: Host, Agent, Env.</h4>
+        <ul><li><strong>Descriptive:</strong> WHO? WHERE? WHEN?</li><li><strong>Analytic:</strong> WHY? (host, agent, env.)</li><li>Person/Place/Time = description</li><li>Host/Agent/Environment = causation</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY -->
+  <div class="content-card">
+    <h3>Historical Evolution of Epidemiology</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Period / Person</th><th>Contribution</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Hippocrates (~400 BC)</strong></td><td>First rational (not supernatural) explanation of disease. Essay: <em>"On Airs, Waters, and Places"</em> — environment and behaviour influence disease</td></tr>
+          <tr><td><strong>John Graunt (1662)</strong></td><td>First to <a href="https://www.britannica.com/biography/John-Graunt" target="_blank" class="medterm">quantify</a> patterns of birth, death &amp; disease. Observed: male/female disparities, high infant mortality, urban/rural differences, seasonal variations</td></tr>
+          <tr><td><strong>William Farr (mid-1800s)</strong></td><td>"Father of modern vital statistics &amp; surveillance." Systematically collected Britain's mortality statistics. Studied effects of marital status, occupation &amp; altitude.</td></tr>
+          <tr><td><strong>John Snow (mid-1800s)</strong></td><td>"Father of <a href="https://www.cdc.gov/epidemiology/field-epidemiology/index.html" target="_blank" class="medterm">field epidemiology</a>." Investigated cholera in London before the microscope existed. Classic 1854 Golden Square study — mapped cases on a spot map, linked cholera to contaminated water pump.</td></tr>
+          <tr><td><strong>Dr. Peter Panum (1846)</strong></td><td>Faroe Islands measles epidemic. Established ~14-day incubation period. Observed life-long immunity after surviving infection.</td></tr>
+          <tr><td><strong>1930s–1940s</strong></td><td>Methods extended to non-infectious diseases. Doll &amp; Hill: smoking → lung cancer. Framingham cardiovascular study.</td></tr>
+          <tr><td><strong>1960s–1970s</strong></td><td>Epidemiology used to eradicate <a href="https://www.who.int/news-room/spotlight/history-of-vaccination/history-of-smallpox-vaccination" target="_blank" class="medterm">smallpox</a> worldwide.</td></tr>
+          <tr><td><strong>1980s</strong></td><td>Molecular &amp; genetic epidemiology. New infectious agents: Ebola, Marburg, HIV/AIDS, Legionella, SARS, drug-resistant TB.</td></tr>
+          <tr><td><strong>1990s–2001+</strong></td><td>Bioterrorism considered in epidemiologic planning post-9/11.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout tip"><div class="callout-icon">💡</div><div>John Snow's progression: <strong>Descriptive → Hypothesis → Analytic → Application</strong> — the gold standard approach still used today.</div></div>
+  </div>
+
+  <!-- TYPES OF EPIDEMIOLOGY -->
+  <div class="content-card">
+    <h3>Types of Epidemiology</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dichotomy</th><th>Type A</th><th>Type B</th></tr></thead>
+        <tbody>
+          <tr><td><strong>By purpose</strong></td><td><strong>Descriptive</strong> — patterns of disease/risk factors; generates hypotheses; does NOT identify causes</td><td><strong>Analytic</strong> — tests hypotheses about causes; how exposure relates to disease</td></tr>
+          <tr><td><strong>By time</strong></td><td><strong>Retrospective</strong> — looks to the past; best example = Case-control studies</td><td><strong>Prospective</strong> — looks to the future; best example = Cohort studies</td></tr>
+          <tr><td><strong>By method</strong></td><td><strong>Observational</strong> — natural course of events observed; e.g. Tuskegee syphilis study</td><td><strong>Experimental</strong> — natural course altered; e.g. malaria vaccine trial, bed net study</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- EPIDEMIOLOGIC TRIANGLE -->
+  <div class="content-card">
+    <h3>The Epidemiologic Triangle</h3>
+    <p>Depicts the relationship among three key factors in disease occurrence:</p>
+    <div class="compare-grid">
+      <div class="compare-col teal-col">
+        <h4>🦠 Agent</h4>
+        <ul><li>Factor whose presence, absence, excess, or deficit is necessary for disease</li><li>Types: Biological, Physical, Chemical</li><li><em>Necessary</em> for disease to occur</li></ul>
+      </div>
+      <div class="compare-col violet-col">
+        <h4>👤 Host</h4>
+        <ul><li>Person/animal harboring the agent</li><li>Personal traits, behaviours</li><li>Genetic predisposition</li><li>Immunologic factors</li><li><em>Influences severity &amp; chance of disease</em></li></ul>
+      </div>
+    </div>
+    <div class="compare-grid" style="margin-top:0">
+      <div class="compare-col gold-col" style="grid-column: 1/-1">
+        <h4>🌍 Environment</h4>
+        <ul style="columns:2; gap:20px">
+          <li><strong>Social:</strong> Education, unemployment, culture, economics</li>
+          <li><strong>Physical:</strong> Climate, terrain, radiation, pollution</li>
+          <li><strong>Biological:</strong> Vectors, reservoirs, humans, plants</li>
+          <li><em>Contributes to the disease process</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn"><div class="callout-icon">⚡</div><div><strong>Epidemics arise when balance is disrupted:</strong> New agent · Change in agent (infectivity, pathogenicity, virulence) · Change in susceptible population · Environmental changes affecting transmission</div></div>
+  </div>
+
+  <!-- USES OF EPIDEMIOLOGY -->
+  <div class="content-card">
+    <h3>Uses / Objectives of Epidemiology</h3>
+    <div class="compare-grid">
+      <div class="compare-col teal-col">
+        <h4>Health Care Management</h4>
+        <ul><li>Community diagnosis</li><li>Planning &amp; evaluation of health services</li><li>Developing health policies</li></ul>
+      </div>
+      <div class="compare-col violet-col">
+        <h4>Understanding Disease</h4>
+        <ul><li>Natural history of disease</li><li>Searching for causes &amp; risk factors</li><li>Historical studies of rise/fall of disease</li><li>Identification of syndromes</li></ul>
+      </div>
+    </div>
+    <div class="compare-grid" style="margin-top:0">
+      <div class="compare-col gold-col">
+        <h4>Public Health Practice</h4>
+        <ul><li>Investigation of epidemics</li><li>Disease surveillance</li><li>Making projections for the future</li><li>Formulating medical curricula</li></ul>
+      </div>
+      <div class="compare-col rose-col">
+        <h4>Clinical Practice</h4>
+        <ul><li>Assessing effectiveness of treatments</li><li>Planning &amp; analysing clinical research</li><li>Studying prognostic factors</li><li>Assisting clinical decision-making</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY TERMINOLOGY -->
+  <div class="content-card">
+    <h3>Key Terminology</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Term</th><th>Definition</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.merriam-webster.com/medical/endemic" target="_blank" class="medterm">Endemic</a></td><td>Disease constantly present at expected levels in a population</td><td>Malaria in sub-Saharan Africa</td></tr>
+          <tr><td><a href="https://www.merriam-webster.com/medical/epidemic" target="_blank" class="medterm">Epidemic</a></td><td>Unusual occurrence of disease clearly in excess of expected occurrence</td><td>Cholera outbreak</td></tr>
+          <tr><td><a href="https://www.who.int/csr/disease/swineflu/frequently_asked_questions/pandemic/en/" target="_blank" class="medterm">Pandemic</a></td><td>Epidemic affecting large proportion over wide geographic area (national/global)</td><td>COVID-19, H1N1</td></tr>
+          <tr><td><strong>Hyperendemic</strong></td><td>Constantly present at high incidence/prevalence; affects all age groups equally</td><td>—</td></tr>
+          <tr><td><strong>Holoendemic</strong></td><td>High infection beginning early in life; adults show less disease than children</td><td>Malaria</td></tr>
+          <tr><td><strong>Sporadic</strong></td><td>Cases occur irregularly, infrequently, scattered — little connection between cases</td><td>Polio, meningococcal meningitis</td></tr>
+          <tr><td><strong>Exotic</strong></td><td>Disease imported into a country where it does not normally occur</td><td>Rabies in the UK</td></tr>
+          <tr><td><a href="https://www.who.int/topics/zoonoses/en/" target="_blank" class="medterm">Zoonosis</a></td><td>Infection transmissible from vertebrate animals to humans under natural conditions</td><td>Rabies, plague, bovine TB</td></tr>
+          <tr><td><strong>Epizootic</strong></td><td>Epidemic in an animal population</td><td>Rift Valley Fever</td></tr>
+          <tr><td><strong>Enzootic</strong></td><td>Endemic occurring in animals</td><td>Bovine TB</td></tr>
+          <tr><td><a href="https://www.cdc.gov/hai/basics/index.html" target="_blank" class="medterm">Nosocomial infection</a></td><td>Hospital-acquired infection; new disorder unrelated to primary condition</td><td>Surgical wound infections, UTIs</td></tr>
+          <tr><td><strong>Attack rate</strong></td><td>Proportion of non-immune exposed individuals who become clinically ill</td><td>—</td></tr>
+          <tr><td><a href="https://www.who.int/news-room/fact-sheets/detail/eradication-of-smallpox" target="_blank" class="medterm">Eradication</a></td><td>Complete elimination of a disease from the world</td><td>Smallpox</td></tr>
+          <tr><td><strong>Elimination</strong></td><td>Reduction of disease to zero in a defined geographic area</td><td>Polio in some regions</td></tr>
+          <tr><td><a href="https://www.cdc.gov/niosh/topics/emres/chemagent.html" target="_blank" class="medterm">Carrier</a></td><td>Harbors the pathogen, can transmit it, but has NO clinical signs of infection</td><td>Typhoid carrier</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- INFECTION LEVELS -->
+  <div class="content-card">
+    <h3>Gradients of Infection</h3>
+    <ol class="num-list">
+      <li><strong>Colonization</strong> — organism present without causing disease (e.g., <em>S. aureus</em> on skin/nasopharynx)</li>
+      <li><strong>Subclinical/inapparent infection</strong> — infection without symptoms (e.g., polio)</li>
+      <li><strong>Latent infection</strong> — dormant infection (e.g., herpes simplex virus)</li>
+      <li><strong>Manifest/clinical infection</strong> — symptomatic disease</li>
+    </ol>
+  </div>
+
+  <!-- CHEAT SHEET S1 -->
+  <div class="cheatsheet">
+    <h3>⚡ Quick Exam Cheat Sheet — Unit 1</h3>
+    <div class="cheatsheet-grid">
+      <div class="cs-item"><strong>Definition essentials</strong>Distribution + Determinants + Application + Population</div>
+      <div class="cs-item"><strong>Three pillars</strong>Frequency → Distribution → Determinants</div>
+      <div class="cs-item"><strong>Descriptive</strong>WHO? WHERE? WHEN? (Person, Place, Time)</div>
+      <div class="cs-item"><strong>Analytic</strong>WHY? (Host, Agent, Environment)</div>
+      <div class="cs-item"><strong>John Snow</strong>Father of field epidemiology · Cholera · Spot map</div>
+      <div class="cs-item"><strong>William Farr</strong>Father of vital statistics &amp; surveillance</div>
+      <div class="cs-item"><strong>Epidemics arise when</strong>Agent changes · Susceptibles increase · Environment shifts</div>
+      <div class="cs-item"><strong>Incidence vs Prevalence</strong>Incidence = new cases; Prevalence = all existing cases</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     UNIT 2 — PUBLIC HEALTH CONCEPTS
+═══════════════════════════════════════════ -->
+<section class="unit-section s2" id="s2">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div>
+      <h2>Concepts &amp; Principles of Public Health</h2>
+      <div class="section-sub">Health Definitions · SDOH · Equity · Public Health Roles · Achievements</div>
+    </div>
+  </div>
+
+  <!-- DEFINITION OF HEALTH -->
+  <div class="content-card">
+    <h3>Definition of Health</h3>
+    <blockquote><strong>WHO (1948):</strong> Health is <em>"a state of complete physical, mental and social well-being and not merely the absence of disease or infirmity."</em></blockquote>
+    <p><strong>Why this matters:</strong> A significant shift from previous definitions that focused solely on the absence of illness. Established health as a <strong>holistic, multi-dimensional concept</strong>. Foundational for World Health Day since 1948.</p>
+    <div class="callout info"><div class="callout-icon">💡</div><div>Health is <strong>not just biological</strong> — it encompasses physical, mental, AND social dimensions.</div></div>
+  </div>
+
+  <!-- SDOH -->
+  <div class="content-card">
+    <h3>Social Determinants of Health (SDOH)</h3>
+    <div class="definition-box"><strong>Definition</strong>The non-medical conditions in which people are born, grow, live, work, and age that influence health outcomes.</div>
+
+    <h4>Five Key SDOH Domains:</h4>
+    <div class="pill-wrap">
+      <span class="pill pill-teal">Economic Stability</span>
+      <span class="pill pill-violet">Education Access</span>
+      <span class="pill pill-gold">Healthcare Access</span>
+      <span class="pill pill-rose">Social &amp; Community Context</span>
+      <span class="pill pill-navy">Neighbourhood &amp; Built Environment</span>
+    </div>
+
+    <h4>Why Do Some People Get Sick While Others Stay Healthy?</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Biology/genetics</li>
+      <li>Poor diet</li>
+      <li>Exposure to hazards, conflicts</li>
+      <li>Behavioural factors (smoking, alcohol, physical inactivity)</li>
+      <li>Access to health services (how the state provides services)</li>
+      <li>Poverty, inequity, and poor living conditions</li>
+    </ul>
+
+    <div class="callout key"><div class="callout-icon">🌍</div><div><strong>Illustrative example:</strong> In 2015, life expectancy in <strong>Sierra Leone = 50 years</strong> vs. <strong>Australia = 83 years</strong> — a 33-year difference largely explained by SDOH, not biology.</div></div>
+  </div>
+
+  <!-- EQUITY, INEQUITY, DISPARITIES -->
+  <div class="content-card">
+    <h3>Health Equity, Inequity &amp; Disparities</h3>
+    <div class="callout warn"><div class="callout-icon">⚠️</div><div>These three terms are <strong>NOT the same</strong> — examiners love testing this distinction.</div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Concept</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.who.int/health-topics/health-equity" target="_blank" class="medterm"><strong>Health Equity</strong></a></td><td>The opportunity for everyone to attain their full health potential; no one is disadvantaged due to socially determined circumstances</td></tr>
+          <tr><td><strong>Health Inequity</strong></td><td>Systematic and <em>unjust</em> distribution of social, economic, and environmental conditions needed for health</td></tr>
+          <tr><td><strong>Health Disparities</strong></td><td>Differences in incidence/prevalence of health conditions between groups (race, SES, gender, geography, disability, sexual orientation)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info"><div class="callout-icon">⚖️</div><div><strong>Equity ≠ Equality</strong> — Equity is about fairness and removing disadvantage; equality is about giving everyone the same thing regardless of need.</div></div>
+  </div>
+
+  <!-- DEFINITIONS OF PUBLIC HEALTH -->
+  <div class="content-card">
+    <h3>Definitions of Public Health</h3>
+    <blockquote><strong>Oxford Textbook:</strong> "The process of mobilizing and engaging local, national and international health agencies and resources to assure the conditions in which people live."</blockquote>
+    <blockquote><strong>American Heritage Dictionary:</strong> "The science and practice of protecting and improving the health of the community by health education, control of communicable diseases, application of sanitary measures and monitoring of environmental hazards."</blockquote>
+    <blockquote><strong>Winslow (1920):</strong> "The science and art of preventing disease, prolonging life, promoting health and efficiency through organized community effort."</blockquote>
+
+    <h4>Primary Role of Public Health:</h4>
+    <div class="pill-wrap">
+      <span class="pill pill-teal">Disease Prevention</span>
+      <span class="pill pill-violet">Health Promotion</span>
+      <span class="pill pill-gold">Prolonging Life</span>
+    </div>
+  </div>
+
+  <!-- PH vs CLINICAL -->
+  <div class="content-card">
+    <h3>Public Health vs. Clinical/Medical Approach</h3>
+    <div class="callout key"><div class="callout-icon">🌊</div><div><strong>The River Analogy:</strong> Doctors are so busy pulling drowning people from the river that nobody goes upstream to find out <em>why</em> people are falling in. Public Health goes upstream.</div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Public Health</th><th>Medical/Clinical</th></tr></thead>
+        <tbody>
+          <tr><td>Unit of study</td><td><strong>Population</strong></td><td><strong>Individual patient</strong></td></tr>
+          <tr><td>Focus</td><td>Disease <strong>prevention</strong></td><td><strong>Diagnosis</strong> &amp; treatment</td></tr>
+          <tr><td>Approach</td><td>Preventive health</td><td>Treatment (medical, surgical, palliative)</td></tr>
+          <tr><td>Movement</td><td><strong>Epidemiologist goes to community</strong></td><td><strong>Patient goes to clinician</strong></td></tr>
+          <tr><td>Perspective</td><td>Population base of disease</td><td>Tip of the iceberg — only sees presenting patients</td></tr>
+          <tr><td>Interest</td><td>Source of infection, mode of spread, disease trend</td><td>Individual patient outcome</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 10 ESSENTIAL SERVICES -->
+  <div class="content-card">
+    <h3>Ten Essential Public Health Services</h3>
+    <div class="callout warn"><div class="callout-icon">📌</div><div>Memorize all 10 — frequently examined as fill-in or MCQ.</div></div>
+    <ol class="num-list">
+      <li><strong>Monitor</strong> health status to identify community health problems</li>
+      <li><strong>Diagnose and investigate</strong> health hazards in the community</li>
+      <li><strong>Inform, educate, and empower</strong> people about health issues</li>
+      <li><strong>Mobilize community partnerships</strong> to identify and solve health problems</li>
+      <li><strong>Develop policies</strong> and plans supporting individual and community health</li>
+      <li><strong>Enforce laws</strong> and regulations that protect health and ensure safety</li>
+      <li><strong>Link to / provide care</strong> — assure provision of services when otherwise unavailable</li>
+      <li><strong>Assure a competent workforce</strong> for public health and personal health care</li>
+      <li><strong>Evaluate</strong> effectiveness, accessibility, and quality of health services</li>
+      <li><strong>Research</strong> for new insights and innovative solutions</li>
+    </ol>
+  </div>
+
+  <!-- 3 CORE FUNCTIONS -->
+  <div class="content-card">
+    <h3>Three Core Functions of Public Health (IOM, 1988)</h3>
+    <div class="compare-grid">
+      <div class="compare-col teal-col"><h4>📊 Assessment</h4><p>Systematically collect, analyze, and make available information on healthy communities</p></div>
+      <div class="compare-col violet-col"><h4>📋 Policy Development</h4><p>Promote use of scientific knowledge in policy and decision-making</p></div>
+    </div>
+    <div class="compare-col gold-col" style="border-radius:8px; padding:14px; margin-top:0"><h4>✅ Assurance</h4><p>Ensure provision of services to those in need</p></div>
+  </div>
+
+  <!-- 10 GREATEST ACHIEVEMENTS -->
+  <div class="content-card">
+    <h3>Ten Greatest Public Health Achievements (CDC, 1999)</h3>
+    <div class="callout warn"><div class="callout-icon">⭐</div><div>Know all ten — your lecturer specifically listed them.</div></div>
+    <ol class="num-list">
+      <li>Iodization of salt — prevents iodine deficiency disorders</li>
+      <li><strong>Vaccination</strong> — eradication of smallpox; vaccines against Ebola, Marburg, COVID-19</li>
+      <li>Motor-vehicle safety — seatbelts, helmets, road safety</li>
+      <li>Safer workplaces — reduced occupational injuries and deaths</li>
+      <li>Control of infectious diseases — eradication of smallpox</li>
+      <li>Decline in deaths from coronary heart disease and stroke</li>
+      <li>Safer and healthier foods — food safety regulation</li>
+      <li>Healthier mothers and babies — reduced maternal and infant mortality</li>
+      <li>Family planning — reproductive health access</li>
+      <li>Fluoridation of drinking water — dental health</li>
+    </ol>
+    <div class="callout info"><div class="callout-icon">📌</div><div>Vaccination (together with sanitation and nutrition) = one of the most important achievements of the 20th century.</div></div>
+  </div>
+
+  <!-- CHEAT SHEET S2 -->
+  <div class="cheatsheet">
+    <h3>⚡ Quick Exam Cheat Sheet — Unit 2</h3>
+    <div class="cheatsheet-grid">
+      <div class="cs-item"><strong>WHO Health definition</strong>Complete physical, mental &amp; social well-being — NOT merely absence of disease</div>
+      <div class="cs-item"><strong>5 SDOH domains</strong>Economic · Education · Healthcare · Social context · Neighbourhood</div>
+      <div class="cs-item"><strong>Equity ≠ Equality ≠ Disparity</strong>Know all three definitions</div>
+      <div class="cs-item"><strong>PH primary role</strong>Prevention + Promotion + Prolonging life</div>
+      <div class="cs-item"><strong>3 Core Functions (IOM)</strong>Assessment → Policy Development → Assurance</div>
+      <div class="cs-item"><strong>River analogy</strong>Medicine = pulling drowning people out; PH = going upstream</div>
+      <div class="cs-item"><strong>PH vs Clinical</strong>Population vs Individual · Prevention vs Treatment · Goes OUT vs Comes IN</div>
+      <div class="cs-item"><strong>10 Achievements</strong>Vaccination, iodized salt, motor safety, workplaces, infectious disease, heart disease, food, maternal/child, family planning, fluoride</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     UNIT 3 — SURVEILLANCE
+═══════════════════════════════════════════ -->
+<section class="unit-section s3" id="s3">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div>
+      <h2>Overview of Disease Surveillance</h2>
+      <div class="section-sub">Definitions · Types · IDSR · Outbreak Investigation · Key Terms</div>
+    </div>
+  </div>
+
+  <!-- DEFINITION -->
+  <div class="content-card">
+    <h3>Definition of Surveillance</h3>
+    <blockquote>Surveillance is the <strong>continuous (ongoing) scrutiny</strong> of the factors that determine the occurrence and distribution of diseases and other health-related events through a <strong>systematic collection of data</strong>.</blockquote>
+    <div class="callout key"><div class="callout-icon">👁️</div><div><strong>Surveillance = the eye and ear of health systems / public health actors</strong></div></div>
+    <p>Surveillance systems = networks of people and activities maintaining this process, from local to international levels.</p>
+  </div>
+
+  <!-- COMPONENTS -->
+  <div class="content-card">
+    <h3>Components of Surveillance → Public Health Action</h3>
+    <div class="compare-grid">
+      <div class="compare-col teal-col">
+        <h4>📥 Surveillance Activities</h4>
+        <ul><li>Data collection</li><li>Analysis</li><li>Interpretation</li><li>Dissemination</li></ul>
+      </div>
+      <div class="compare-col violet-col">
+        <h4>⚡ Resulting PH Action</h4>
+        <ul><li>Priority setting</li><li>Planning, implementing, evaluating</li><li>Investigation</li><li>Control &amp; Prevention</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPORTANCE -->
+  <div class="content-card">
+    <h3>Importance &amp; Purpose of Surveillance</h3>
+    <ul style="padding-left:20px; font-size:14px; line-height:2.2">
+      <li><strong>Early warning system</strong> for impending public health emergencies</li>
+      <li><strong>Early detection</strong> of disease outbreaks</li>
+      <li><strong>Differentiates</strong> endemic disease, localized outbreaks, epidemics, and pandemics</li>
+      <li><strong>Documents impact</strong> of interventions / tracks progress toward goals</li>
+      <li><strong>Understands disease trends</strong> over time</li>
+      <li><strong>Guides</strong> public health interventions</li>
+      <li><strong>Optimizes</strong> available public health resources</li>
+      <li>Provides <strong>baseline data</strong> to assess prevention/control measures</li>
+    </ul>
+  </div>
+
+  <!-- LEVELS -->
+  <div class="content-card">
+    <h3>Levels of Surveillance</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Level</th><th>Description</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Individual/Family</strong></td><td>Surveillance of infected person who is a source to others</td><td>Typhoid carriers</td></tr>
+          <tr><td><strong>Community/Local</strong></td><td>Surveillance of whole community for early detection &amp; control</td><td>Malaria</td></tr>
+          <tr><td><strong>National</strong></td><td>Surveillance at national level</td><td>Smallpox post-eradication</td></tr>
+          <tr><td><strong>International</strong></td><td>WHO-listed diseases surveillance</td><td>Malaria, influenza</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TYPES OF SURVEILLANCE -->
+  <div class="content-card">
+    <h3>Types of Surveillance — Comparison</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Definition</th><th>Advantages</th><th>Disadvantages</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Passive</strong></td>
+            <td>Routine surveillance — information providers come to health facilities; data collected as part of routine service provision</td>
+            <td>Wide coverage, no special arrangement, cheap, wide area</td>
+            <td>Unreliable/incomplete/inaccurate, not timely, not representative, misses people who don't attend facilities</td>
+          </tr>
+          <tr>
+            <td><strong>Active</strong></td>
+            <td>Data collection on a <em>specific disease</em> for a <em>limited time</em>; house-to-house surveys; health personnel assigned at regular intervals</td>
+            <td>Complete, accurate, timely</td>
+            <td>Expensive, requires organization &amp; skilled staff, short-term only, directed at specific diseases</td>
+          </tr>
+          <tr>
+            <td><strong>Sentinel</strong></td>
+            <td>Selected sites monitor and collect diseases of interest to supplement routine notification and identify missing cases</td>
+            <td>Less but better data, consistent, good data quality &amp; timeliness</td>
+            <td>Representativeness issues, unknown denominator, voluntary participation</td>
+          </tr>
+          <tr>
+            <td><strong>Syndromic</strong></td>
+            <td>Focuses on symptoms/constellation of symptoms before diagnosis is confirmed; uses ER electronic data; no lab confirmation needed</td>
+            <td>Faster intervention, more sensitive</td>
+            <td>Less specific</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>When to Use Active Surveillance:</h4>
+    <div class="pill-wrap">
+      <span class="pill pill-teal">New disease discovery</span>
+      <span class="pill pill-violet">New mode of transmission</span>
+      <span class="pill pill-gold">Disease in new subgroup</span>
+      <span class="pill pill-rose">Previously eradicated disease reappears</span>
+      <span class="pill pill-navy">Eradication programs</span>
+    </div>
+  </div>
+
+  <!-- IDSR -->
+  <div class="content-card">
+    <h3>IDSR — Integrated Disease Surveillance &amp; Response (Kenya)</h3>
+    <p>A strategy coordinating activities from different vertical programs to make best use of scarce resources. Recommends integration of surveillance for diseases of public health importance.</p>
+
+    <h4>Kenya's 18 Priority Diseases — 3 Categories:</h4>
+    <div class="compare-grid">
+      <div class="compare-col rose-col">
+        <h4>🚨 (A) Epidemic-Prone Diseases</h4>
+        <ul><li>Cholera</li><li>Dysentery</li><li>Plague</li><li>Yellow Fever</li><li>Typhoid Fever</li><li>Meningococcal Meningitis</li><li>Measles</li></ul>
+      </div>
+      <div class="compare-col violet-col">
+        <h4>🎯 (B) Eradication/Elimination</h4>
+        <ul><li>Leprosy</li><li>Poliomyelitis</li><li>Dracunculiosis (Guinea worm)</li><li>Neonatal Tetanus</li><li>Trypanosomiasis</li></ul>
+      </div>
+    </div>
+    <div class="compare-col teal-col" style="border-radius:8px; padding:14px; margin-top:0">
+      <h4>🏥 (C) Diseases of Public Health Importance</h4>
+      <ul style="columns:2; gap:20px">
+        <li>Malaria</li><li>New AIDS Cases</li><li>Tuberculosis</li><li>Childhood Pneumonia</li><li>Childhood Diarrhoea</li><li>STIs</li><li>Avian Influenza &amp; other emerging infections</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OUTBREAK INVESTIGATION -->
+  <div class="content-card">
+    <h3>Procedure for Investigating an Outbreak</h3>
+    <div class="callout warn"><div class="callout-icon">📋</div><div>This is a common long-answer exam question. Know all steps in order.</div></div>
+    <ol class="num-list">
+      <li><strong>Establish the existence of an outbreak</strong> — compare current to previous incidence in same community/season</li>
+      <li><strong>Confirm diagnosis</strong> — clinical histories + standard laboratory tests; determine the agent (bacterial, viral, fungal, other)</li>
+      <li><strong>Establish case definition and count cases</strong> — develop a case definition; establish counting methods</li>
+      <li><strong>Relate to time, place, and person</strong> — interview known cases: when ill (time), where infected (place), who they are (person)</li>
+      <li><strong>Determine who is at risk</strong> — count cases, relate to groups at risk; contact those with info on illnesses/environment</li>
+      <li><strong>Formulate a tentative hypothesis</strong> — explain most likely cause, source, and distribution of cases</li>
+      <li><strong>Compare hypothesis with established facts</strong> — test hypothesis with gathered data</li>
+      <li><strong>Plan detailed epidemiologic investigation</strong> — determine additional info needed; develop interview forms; gather sampling equipment</li>
+      <li><strong>Gather community and environmental information</strong> — investigate sources; obtain samples; summarize and interpret all data and lab results</li>
+      <li><strong>Construct epidemic curves; apply statistical tests</strong> — calculate rates; accept or reject hypothesis</li>
+      <li><strong>Prepare a written report</strong> — summarize investigation as soon as completed</li>
+      <li><strong>Implement control and prevention measures</strong> — use evidence gathered; initiate ongoing surveillance</li>
+    </ol>
+  </div>
+
+  <!-- OUTBREAK DEFINITIONS -->
+  <div class="content-card">
+    <h3>Outbreak · Epidemic · Pandemic · Cluster</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Outbreak</strong></td><td>Cases exceeding expected numbers in a defined area/time; same as epidemic but less alarming connotation</td></tr>
+          <tr><td><strong>Epidemic</strong></td><td>Same as outbreak; used for more serious situations (avoid to prevent panic)</td></tr>
+          <tr><td><strong>Pandemic</strong></td><td>Epidemic widespread geographically — national, continental, or global</td></tr>
+          <tr><td><strong>Cluster</strong></td><td>Group of cases in a specific time and place — may or may not exceed normal rates</td></tr>
+          <tr><td><strong>Endemic</strong></td><td>Disease with high background rate in a given place/time; constantly present</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET S3 -->
+  <div class="cheatsheet">
+    <h3>⚡ Quick Exam Cheat Sheet — Unit 3</h3>
+    <div class="cheatsheet-grid">
+      <div class="cs-item"><strong>Surveillance definition</strong>Continuous, systematic data collection on disease occurrence &amp; distribution</div>
+      <div class="cs-item"><strong>4 Activities</strong>Collection → Analysis → Interpretation → Dissemination</div>
+      <div class="cs-item"><strong>Passive</strong>Wide coverage, cheap, BUT unreliable &amp; incomplete</div>
+      <div class="cs-item"><strong>Active</strong>Complete &amp; timely, BUT expensive, short-term, disease-specific</div>
+      <div class="cs-item"><strong>Sentinel</strong>Less but better data — selected sites</div>
+      <div class="cs-item"><strong>Syndromic</strong>Symptoms not diagnosis — faster, more sensitive, less specific</div>
+      <div class="cs-item"><strong>Kenya IDSR categories</strong>Epidemic-prone · Eradication-targeted · Public health importance</div>
+      <div class="cs-item"><strong>Outbreak steps</strong>Establish → Confirm → Define → Time/Place/Person → At-risk → Hypothesis → Test → Investigate → Stats → Report → Control</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     UNIT 4 — GLOBAL HEALTH THREATS
+═══════════════════════════════════════════ -->
+<section class="unit-section s4" id="s4">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div>
+      <h2>Global Health Threats &amp; Strategies</h2>
+      <div class="section-sub">10 Major Threats · Cross-Cutting Strategies · Key Facts</div>
+    </div>
+  </div>
+
+  <div class="callout info"><div class="callout-icon">📌</div><div>For each threat know: <strong>what it is, why it matters, and what strategies address it.</strong> The table at the end summarizes all 10.</div></div>
+
+  <!-- THREAT CARDS -->
+  <div class="content-card">
+    <h3>Threat 1 — Pandemic Diseases</h3>
+    <p>Large-scale outbreaks causing significant morbidity, mortality, economic, social, and political disruption over a wide geographic area (e.g., COVID-19).</p>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Strengthening surveillance and response systems</li>
+      <li>Investing in research for vaccines and treatments</li>
+      <li>Enhancing global cooperation and information sharing</li>
+      <li>Investing in core public health infrastructure (water, sanitation)</li>
+      <li>Increasing situational awareness</li>
+      <li>Rapidly extinguishing early sparks before they become pandemics</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 2 — Antimicrobial Resistance (AMR)</h3>
+    <p>Rise of resistant bacteria making common infections harder or impossible to treat. Threatens food safety, economic development, equity, and the SDGs. Demands <strong>urgent action</strong>.</p>
+    <div class="callout key"><div class="callout-icon">🔑</div><div>AMR is a <strong>One Health issue</strong> — affects humans, animals, plants, food, and the environment simultaneously.</div></div>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Promoting <strong>responsible antibiotic use</strong> in healthcare and agriculture</li>
+      <li>Supporting research for new antibiotics and alternative therapies</li>
+      <li>Implementing robust infection control measures</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 3 — War and Conflicts</h3>
+    <p>Major cause of disability worldwide. Disrupts healthcare systems, displaces populations, creates hostile environments for healthcare delivery. Leads to communicable diseases, malnutrition, and physical injuries.</p>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Supporting <strong>rebuilding of healthcare facilities</strong> in conflict-affected areas</li>
+      <li>Providing <strong>emergency aid and medical assistance</strong> to displaced populations</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 4 — Agriculture and Animal Health</h3>
+    <p>Human-animal interactions, biodiversity erosion, ecosystem alteration, and climate change drive emergence of infectious diseases — most originating from animals.</p>
+    <div class="callout key"><div class="callout-icon">🐾</div><div><strong>Zoonotic diseases</strong> affect <strong>more than 2 billion people</strong> and cause <strong>over 2 million deaths</strong> every year.</div></div>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Integrated, multidisciplinary solutions to prevent, detect, and manage risks</li>
+      <li><strong>One Health approach</strong> — collaboration among food production, processing, and distribution stakeholders</li>
+      <li>Improved surveillance, monitoring, and risk assessment for foodborne illnesses</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 5 — Non-Communicable Diseases (NCDs)</h3>
+    <p>Not spread through infection — caused by unhealthy behaviours. <strong>Leading cause of death worldwide.</strong></p>
+    <div class="callout key"><div class="callout-icon">❤️</div><div><strong>The Big Four NCDs</strong> account for over 2/3 of global deaths: Cardiovascular diseases · Cancers · Diabetes · Chronic respiratory diseases</div></div>
+    <div class="callout tip"><div class="callout-icon">✅</div><div><strong>80% of heart diseases, strokes, and type 2 diabetes</strong> + <strong>1/3 of cancers</strong> can be prevented by: cutting tobacco · healthy diet · physical activity · stopping harmful alcohol use</div></div>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Promoting healthy lifestyles through public education campaigns</li>
+      <li>Policies encouraging physical activity and healthy eating</li>
+      <li>Increasing access to preventive healthcare services</li>
+      <li>Strengthening health systems and universal health coverage</li>
+      <li>Reducing modifiable risk factors: tobacco, alcohol, unhealthy diets, inactivity</li>
+      <li>International cooperation and advocacy; robust monitoring of trends</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 6 — Health Inequities</h3>
+    <div class="callout warn"><div class="callout-icon">⚠️</div><div>At least <strong>50% of the world's population</strong> lacks access to essential healthcare. Nearly <strong>100 million people</strong> pushed into extreme poverty annually due to uninsured medical costs.</div></div>
+    <p>Chronic global shortage of health workers compounded by migration from developing to developed countries. Developing countries face challenges in financing, workforce, infrastructure, supplies, and health information systems.</p>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Implementing policies that target underserved populations</li>
+      <li>Promoting social determinants of health (housing, education, income)</li>
+      <li>Increasing community engagement in health initiatives</li>
+      <li>Strengthening <strong>Primary Health Care (PHC)</strong> systems, especially where physical access is a barrier</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 7 — Environmental Factors &amp; Climate Change</h3>
+    <div class="callout warn"><div class="callout-icon">🌡️</div><div><strong>WHO identifies climate change as the most significant health threat facing humanity in the intermediate term.</strong></div></div>
+    <p>Environmental factors: air pollution, water pollution, toxic chemicals, climate change, natural disasters. Over <strong>100 illnesses and injuries</strong> directly linked to environmental health. Greatest impact on poor communities.</p>
+    <p><strong>Climate health effects:</strong> More infectious diseases emerging (dengue, Ebola) · Disease vector suitability increased ~<strong>10% between 1950 and 2018</strong> · More frequent hurricanes, flooding, drought, heat waves · Heat waves → respiratory/cardiovascular disease, reduced food access, higher mortality.</p>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Integrating climate change into public health planning and policy</li>
+      <li>Promoting sustainability and reducing carbon footprints</li>
+      <li>Advanced technologies to reduce pollution</li>
+      <li>Strict environmental regulations (e.g., EU Air Quality Directive)</li>
+      <li>Investment in public health infrastructure</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 8 — Global Migration and Displacement</h3>
+    <p>Displaced populations live in poor sanitary conditions with inadequate shelter, crowding, and suboptimal nutrition — increasing risk of communicable diseases.</p>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Developing inclusive health systems for migrants and refugees</li>
+      <li>Enhancing vaccination and preventive measures in migrant communities</li>
+      <li>Facilitating access to healthcare regardless of immigration status</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 9 — Mental Health and Substance Abuse</h3>
+    <div class="callout key"><div class="callout-icon">🧠</div><div>Post-pandemic, mental health incidence is <strong>higher than cancer</strong>. Historically underfunded and isolated from conventional healthcare.</div></div>
+    <p>Drivers of anxiety/depression epidemic: rising cost of living, ongoing global conflicts, climate change. Alcohol, tobacco, and drugs associated with cancer, chronic lung/liver disease, STIs, and mental disorders.</p>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Integrate mental health throughout the healthcare continuum</li>
+      <li>Scale up evidence-based harm reduction interventions</li>
+      <li>Digital health interventions, collaborative care models, peer support programs</li>
+      <li>Holistic approach targeting: stigma, poverty, unemployment, violence, conflict</li>
+    </ul>
+  </div>
+
+  <div class="content-card">
+    <h3>Threat 10 — Emerging and Re-emerging Infectious Diseases</h3>
+    <p>Significant obstacles in poor communities. Socioeconomic determinants and inequity influence occurrence and spread. Malaria disproportionately affects the poorest and rural populations in Sub-Saharan Africa. HIV/AIDS and malaria continue to put massive pressure on healthcare systems.</p>
+    <h4>Strategies:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Improving quality of <strong>primary health services</strong> as foundation for prevention</li>
+      <li>Adequate financial support to public health infrastructure</li>
+      <li>Working toward alleviating poverty</li>
+      <li>Interagency and international collaboration for research, surveillance, and response</li>
+    </ul>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="content-card">
+    <h3>Summary — All 10 Threats</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Threat</th><th>Core Problem</th><th>Key Strategy</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Pandemic Diseases</strong></td><td>Rapid spread overwhelming health systems</td><td>Surveillance + global cooperation + core infrastructure</td></tr>
+          <tr><td>2</td><td><strong>AMR</strong></td><td>Resistant organisms rendering treatments ineffective</td><td>Responsible antibiotic use + new drug research</td></tr>
+          <tr><td>3</td><td><strong>War &amp; Conflicts</strong></td><td>Destruction of health systems + displacement</td><td>Rebuild facilities + emergency aid</td></tr>
+          <tr><td>4</td><td><strong>Agriculture &amp; Animal Health</strong></td><td>Zoonotic diseases + foodborne illness</td><td>One Health approach + integrated surveillance</td></tr>
+          <tr><td>5</td><td><strong>NCDs</strong></td><td>Lifestyle diseases = #1 cause of global death</td><td>Healthy lifestyle promotion + preventive policy</td></tr>
+          <tr><td>6</td><td><strong>Health Inequities</strong></td><td>50% of world lacks essential healthcare</td><td>Target underserved + strengthen PHC + address SDOH</td></tr>
+          <tr><td>7</td><td><strong>Environmental Factors</strong></td><td>Pollution + climate change + disasters</td><td>Integrate climate into PH + strict regulation</td></tr>
+          <tr><td>8</td><td><strong>Migration &amp; Displacement</strong></td><td>Disease spread + strained health resources</td><td>Inclusive health systems + vaccination</td></tr>
+          <tr><td>9</td><td><strong>Mental Health &amp; Substance Abuse</strong></td><td>Underfunded, underintegrated, rising burden</td><td>Integrate into health systems + holistic approach</td></tr>
+          <tr><td>10</td><td><strong>Emerging Infectious Diseases</strong></td><td>Poverty-driven spread + pressure on systems</td><td>Strong PHC + poverty alleviation + international collaboration</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET S4 -->
+  <div class="cheatsheet">
+    <h3>⚡ Quick Exam Cheat Sheet — Unit 4</h3>
+    <div class="cheatsheet-grid">
+      <div class="cs-item"><strong>Number of threats</strong>10 major global health threats</div>
+      <div class="cs-item"><strong>Leading cause of death</strong>NCDs (Big 4: cardiovascular, cancer, diabetes, chronic respiratory)</div>
+      <div class="cs-item"><strong>80% preventable NCDs</strong>Tobacco cessation · healthy diet · physical activity · reduce alcohol</div>
+      <div class="cs-item"><strong>Zoonotic diseases</strong>2 billion+ affected · 2 million+ deaths/year</div>
+      <div class="cs-item"><strong>One Health</strong>Human + animal + environmental health are interconnected</div>
+      <div class="cs-item"><strong>WHO's biggest intermediate threat</strong>Climate change</div>
+      <div class="cs-item"><strong>Climate &amp; vectors</strong>Transmission increased ~10% between 1950–2018</div>
+      <div class="cs-item"><strong>Universal strategies</strong>Surveillance · International cooperation · Research · PHC · SDOH · UHC</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     UNIT 5 — MORBIDITY & MORTALITY
+═══════════════════════════════════════════ -->
+<section class="unit-section s5" id="s5">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div>
+      <h2>Measures of Morbidity &amp; Mortality</h2>
+      <div class="section-sub">Rate · Ratio · Proportion · Incidence · Prevalence · RR · OR · AR · CFR</div>
+    </div>
+  </div>
+
+  <!-- TOOLS OF MEASUREMENT -->
+  <div class="content-card">
+    <h3>Rate, Ratio &amp; Proportion — Core Distinctions</h3>
+    <div class="callout warn"><div class="callout-icon">⚠️</div><div>Know the differences cold — very likely to appear as an exam MCQ or short answer.</div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Rate</th><th>Ratio</th><th>Proportion</th></tr></thead>
+        <tbody>
+          <tr><td>Numerator part of denominator?</td><td><strong>Yes ✓</strong></td><td><strong>No ✗</strong></td><td><strong>Yes ✓</strong></td></tr>
+          <tr><td>Time factor?</td><td><strong>Yes ✓</strong></td><td>No</td><td>No</td></tr>
+          <tr><td>Multiplier?</td><td><strong>Yes ✓</strong></td><td>No</td><td>No</td></tr>
+          <tr><td>Expressed as</td><td>Per 1,000 / 100,000</td><td>X:Y or X/Y</td><td>Percentage (%)</td></tr>
+          <tr><td>Example</td><td>Death rate per 100,000</td><td>Doctor : population ratio</td><td>10/30 × 100 = 33.3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="formula">
+      <div class="label">Death Rate Formula</div>
+      Deaths in a given year / Mid-year population × 100,000
+    </div>
+  </div>
+
+  <!-- MORBIDITY -->
+  <div class="content-card">
+    <h3>Morbidity — Definition</h3>
+    <div class="definition-box"><strong>Morbidity</strong>Any departure, subjective or objective, from a state of physical and psychological well-being. In practice encompasses disease, injury, and disability. Also refers to the number of persons ill, periods of illness, or duration of illness.</div>
+    <p>Two key measures: <strong>Incidence</strong> (who becomes ill) and <strong>Prevalence</strong> (who is ill at a given time).</p>
+  </div>
+
+  <!-- INCIDENCE -->
+  <div class="content-card">
+    <h3>Incidence</h3>
+    <p>The number of <strong>new cases</strong> of disease in a defined population over a defined period of time.</p>
+    <div class="formula">
+      <div class="label">Incidence Formula</div>
+      Incidence = New cases in population over defined time / Persons at risk during that time
+    </div>
+    <h4>Key Properties:</h4>
+    <ul style="padding-left:20px; font-size:14px; line-height:2">
+      <li>Only includes <strong>new cases</strong> in numerator</li>
+      <li>Denominator = persons <strong>at risk</strong> at start of observation period</li>
+      <li>Incidence proportion = measure of <strong>risk or probability</strong> of developing disease</li>
+      <li>Denominator must be restricted to <strong>population at risk</strong> (e.g., ovarian cancer denominator = women only)</li>
+    </ul>
+    <div class="callout tip"><div class="callout-icon">📝</div><div><strong>Worked Example:</strong> 100 of 189 diabetic men died during 13-year follow-up.<br>Risk = 100/189 × 100 = <strong>52.9%</strong></div></div>
+    <div class="callout tip"><div class="callout-icon">📝</div><div><strong>Attack Rate Example:</strong> 30 of 99 persons who ate potato salad developed gastroenteritis.<br>Attack rate = 30/99 × 100 = <strong>30.3%</strong></div></div>
+  </div>
+
+  <!-- PREVALENCE -->
+  <div class="content-card">
+    <h3>Prevalence</h3>
+    <p>The proportion of a population who have a particular disease at a <strong>specified point</strong> or <strong>over a specified period</strong> of time.</p>
+    <div class="formula">
+      <div class="label">Prevalence Formula</div>
+      Prevalence = Persons with disease / Total persons in population
+    </div>
+    <div class="compare-grid">
+      <div class="compare-col teal-col"><h4>Point Prevalence</h4><p>Prevalence at a <em>single point in time</em> — a snapshot. Proportion with disease at that moment.</p></div>
+      <div class="compare-col violet-col"><h4>Period Prevalence</h4><p>Prevalence measured <em>over an interval of time</em> — covers both existing and new cases during the period.</p></div>
+    </div>
+    <div class="formula">
+      <div class="label">Key Relationship</div>
+      Prevalence = Incidence × Duration of disease
+    </div>
+    <div class="callout tip"><div class="callout-icon">📝</div><div><strong>Worked Example:</strong> 200 of 4,000 surveyed people in Tana River district positive for schistosomiasis.<br>Prevalence = 200/4,000 × 100 = <strong>5%</strong></div></div>
+  </div>
+
+  <!-- INCIDENCE vs PREVALENCE -->
+  <div class="content-card">
+    <h3>Incidence vs. Prevalence — Key Differences</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Incidence</th><th>Prevalence</th></tr></thead>
+        <tbody>
+          <tr><td>What it counts</td><td><strong>New</strong> cases only</td><td><strong>All existing</strong> cases (new + pre-existing)</td></tr>
+          <tr><td>Measures</td><td>Risk of <strong>developing</strong> disease</td><td><strong>Burden</strong> of disease</td></tr>
+          <tr><td>Best for</td><td>Acute diseases, identifying causes</td><td>Chronic diseases, resource planning</td></tr>
+          <tr><td>Denominator</td><td>Population at risk at <strong>start</strong></td><td>Population during same time period</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout info"><div class="callout-icon">💡</div><div>
+      <strong>High prevalence</strong> may reflect: high incidence OR prolonged survival without cure OR both<br>
+      <strong>Low prevalence</strong> may indicate: low incidence OR rapidly fatal disease OR rapid recovery<br>
+      <strong>Prevalence preferred</strong> for chronic diseases (diabetes) — long duration, difficult date of onset
+    </div></div>
+  </div>
+
+  <!-- 2x2 TABLE -->
+  <div class="content-card">
+    <h3>The 2×2 Contingency Table</h3>
+    <p>Foundation for calculating all measures of association. Know how to fill and use it.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Disease: Yes</th><th>Disease: No</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Exposed: Yes</strong></td><td><strong>a</strong></td><td><strong>b</strong></td><td>a+b</td></tr>
+          <tr><td><strong>Exposed: No</strong></td><td><strong>c</strong></td><td><strong>d</strong></td><td>c+d</td></tr>
+          <tr><td><strong>Total</strong></td><td>a+c</td><td>b+d</td><td>a+b+c+d</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pill-wrap">
+      <span class="pill pill-teal">a = exposed AND diseased</span>
+      <span class="pill pill-violet">b = exposed, NOT diseased</span>
+      <span class="pill pill-gold">c = not exposed, but diseased</span>
+      <span class="pill pill-rose">d = not exposed, NOT diseased</span>
+    </div>
+  </div>
+
+  <!-- RELATIVE RISK -->
+  <div class="content-card">
+    <h3>Relative Risk (RR)</h3>
+    <p>Ratio of risk comparing two groups based on exposure status. Measures <strong>strength of association</strong>. Used in <strong>cohort (prospective) studies</strong>.</p>
+    <div class="formula">
+      <div class="label">RR Formula</div>
+      RR = [a / (a+b)] ÷ [c / (c+d)] = Incidence(exposed) / Incidence(unexposed)
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>RR Value</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RR = 1.0</strong></td><td>No association — risk identical in exposed and unexposed</td></tr>
+          <tr><td><strong>RR &gt; 1.0</strong></td><td>Positive association — <strong>increased risk</strong> in exposed group</td></tr>
+          <tr><td><strong>RR &lt; 1.0</strong></td><td>Negative association — <strong>decreased risk</strong> in exposed (protective)</td></tr>
+          <tr><td>RR = 5</td><td>Exposed are <strong>5 times more likely</strong> to have the outcome</td></tr>
+          <tr><td>RR = 0.5</td><td>Exposed are <strong>half as likely</strong> to have the outcome</td></tr>
+          <tr><td>RR = 1.3</td><td><strong>30% increased risk</strong> for exposed vs. unexposed</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip"><div class="callout-icon">📝</div><div><strong>E. coli &amp; pink hamburger:</strong><br>
+    Ate hamburger: 23 ill / 33 total &nbsp;|&nbsp; Did not eat: 7 ill / 67 total<br>
+    RR = (23/33) ÷ (7/67) = <strong>6.67</strong> — those who ate the hamburger were 6.67× more likely to develop E. coli.</div></div>
+  </div>
+
+  <!-- ODDS RATIO -->
+  <div class="content-card">
+    <h3>Odds Ratio (OR)</h3>
+    <p>Ratio of the odds of disease in exposed vs. unexposed persons. Used in <strong>case-control studies</strong> (population at risk not known).</p>
+    <div class="formula">
+      <div class="label">OR Formula</div>
+      OR = (a × d) / (b × c)
+    </div>
+    <div class="callout info"><div class="callout-icon">📌</div><div>OR is interpreted the same way as RR: = 1 (no association) · &gt;1 (positive) · &lt;1 (negative/protective)</div></div>
+    <div class="callout tip"><div class="callout-icon">📝</div><div><strong>MMR vaccine &amp; autism:</strong><br>
+    OR = (130 × 135) / (115 × 120) = 17,550 / 13,800 = <strong>1.27</strong> — very weak association, not significant.</div></div>
+  </div>
+
+  <!-- ATTRIBUTABLE RISK -->
+  <div class="content-card">
+    <h3>Attributable Risk (AR) / Risk Difference (RD)</h3>
+    <p>The <strong>excess risk</strong> of disease in the exposed group directly attributable to the exposure, after accounting for background risk.</p>
+    <div class="formula">
+      <div class="label">AR Formula (also called Risk Difference or Excess Risk)</div>
+      AR = I(exposed) − I(unexposed)
+    </div>
+    <div class="callout tip"><div class="callout-icon">📝</div><div><strong>Fast vs. slow driving:</strong><br>
+    Fast risk = 0.050 &nbsp;|&nbsp; Slow risk = 0.010<br>
+    AR = 0.050 − 0.010 = <strong>0.040</strong> (4 extra deaths per 100 due to fast driving)</div></div>
+  </div>
+
+  <!-- ATTRIBUTABLE FRACTION -->
+  <div class="content-card">
+    <h3>Attributable Fraction (AF%) / Attributable Risk %</h3>
+    <p>AR expressed as a <strong>percentage of total risk in exposed group</strong>. Answers: what proportion of disease among exposed is due to the exposure?</p>
+    <p>Also called: Attributable proportion · Etiologic fraction</p>
+    <div class="formula">
+      <div class="label">AF% Formula</div>
+      AF% = [I(exposed) − I(unexposed)] / I(exposed) × 100
+      Also: AF% = 1 − (1/RR)
+      Case-control: AF = 1 − (1/OR)
+    </div>
+    <div class="callout tip"><div class="callout-icon">📝</div><div>
+      <strong>Fast driving:</strong> (0.050 − 0.010) / 0.050 × 100 = <strong>80%</strong><br>
+      <strong>Drunk driving:</strong> (0.150 − 0.014) / 0.150 × 100 = <strong>91%</strong>
+    </div></div>
+  </div>
+
+  <!-- PREVENTED FRACTION -->
+  <div class="content-card">
+    <h3>Prevented Fraction (PF) — Vaccine Efficacy</h3>
+    <p>Used when exposure is associated with <strong>decreased risk</strong> (RR &lt; 1, e.g., a vaccine). Answers: what proportion of potential cases were prevented by the exposure?</p>
+    <div class="callout tip"><div class="callout-icon">📝</div><div><strong>Fluoridation of drinking water:</strong><br>
+    Fluoridated area = 14.8% dental caries &nbsp;|&nbsp; Non-fluoridated = 21.3%<br>
+    PF = (21.3 − 14.8) / 21.3 = <strong>30.5%</strong> of caries prevented by fluoridation.</div></div>
+  </div>
+
+  <!-- PAR -->
+  <div class="content-card">
+    <h3>Population Attributable Risk (PAR) &amp; Fraction (PAF)</h3>
+    <p><strong>PAR</strong> = excess risk of disease in the total population attributable to exposure.<br>
+    <strong>PAF</strong> = proportion of cases in total population attributable to exposure, as % of total population risk.<br>
+    <strong>Key use:</strong> Helps determine which exposures to target for greatest population-level impact.</p>
+    <div class="formula">
+      <div class="label">PAF in Case-Control Studies</div>
+      PAF = (1 − 1/OR) × Pc    where Pc = % of cases who were exposed
+    </div>
+    <div class="callout key"><div class="callout-icon">🚗</div><div>
+      <strong>Driving-related deaths conclusion:</strong><br>
+      44% attributed to <strong>fast driving</strong> · 22% attributed to <strong>drunk driving</strong><br>
+      → Targeting fast driving would have a <strong>greater population-level impact</strong>
+    </div></div>
+  </div>
+
+  <!-- STATISTICAL SIGNIFICANCE -->
+  <div class="content-card">
+    <h3>Tests of Statistical Significance</h3>
+    <div class="compare-grid">
+      <div class="compare-col teal-col">
+        <h4>95% Confidence Interval (CI)</h4>
+        <ul>
+          <li>Range of values with 95% chance of containing the true RR or OR</li>
+          <li><strong>To be significant: CI must NOT include 1.0</strong></li>
+          <li>CI entirely above 1 → increased risk</li>
+          <li>CI entirely below 1 → decreased risk (protective)</li>
+          <li>CI includes 1 → no significant association</li>
+        </ul>
+      </div>
+      <div class="compare-col violet-col">
+        <h4>p-value</h4>
+        <ul>
+          <li>Probability that observed association occurred <em>by chance alone</em></li>
+          <li><strong>p &lt; 0.05</strong> → statistically significant (less than 5% chance it's due to chance)</li>
+          <li>Very small p-value → very unlikely by chance alone</li>
+        </ul>
+      </div>
+    </div>
+    <h4>Example — STIs and Tubal Infertility:</h4>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Disease</th><th>OR</th><th>95% CI</th><th>p-value</th><th>Significant?</th></tr></thead>
+        <tbody>
+          <tr><td>Gonorrhea</td><td>2.4</td><td>1.3–4.4</td><td>0.004</td><td>✅ Yes (CI excludes 1)</td></tr>
+          <tr><td>Trichomonas</td><td>1.9</td><td>1.3–2.8</td><td>0.001</td><td>✅ Yes</td></tr>
+          <tr><td>Yeast</td><td>1.3</td><td>1.0–1.7</td><td>0.04</td><td>⚠️ Borderline</td></tr>
+          <tr><td>Herpes</td><td>0.9</td><td>0.5–1.8</td><td>0.80</td><td>❌ No (CI includes 1)</td></tr>
+          <tr><td>Genital warts</td><td>0.4</td><td>0.2–1.0</td><td>0.05</td><td>⚠️ Borderline</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MORTALITY MEASURES -->
+  <div class="content-card">
+    <h3>Mortality Measures</h3>
+    <div class="formula">
+      <div class="label">Crude Death Rate</div>
+      Total deaths during interval / Mid-interval population × 1,000
+    </div>
+    <div class="formula">
+      <div class="label">Cause-Specific Death Rate</div>
+      Deaths from specific cause / Mid-interval population × 1,000
+    </div>
+    <h4>Case Fatality Rate (CFR) — "Killing Power of a Disease"</h4>
+    <div class="definition-box"><strong>CFR</strong>A measure of the severity of a disease — proportion of diagnosed cases who die.</div>
+    <div class="formula">
+      <div class="label">CFR Formula</div>
+      CFR = Deaths from disease in given period / Diagnosed cases in same period × 100
+    </div>
+    <div class="callout tip"><div class="callout-icon">📝</div><div>
+      <strong>Malaria (Siaya, 1998):</strong> 20 deaths / 200 admitted = CFR = <strong>10%</strong><br>
+      <strong>Ebola (West Africa, peak):</strong> 90 deaths / 100 admitted = CFR = <strong>90%</strong><br>
+      → Ebola is far more severe
+    </div></div>
+  </div>
+
+  <!-- PERSON-TIME -->
+  <div class="content-card">
+    <h3>Person-Time</h3>
+    <p>A unit combining persons and time for calculating incidence rates when individuals are followed for different lengths of time.</p>
+    <div class="pill-wrap">
+      <span class="pill pill-teal">1 person × 1 year = 1 person-year</span>
+      <span class="pill pill-violet">1 person × 1 month = 1 person-month</span>
+      <span class="pill pill-gold">Units: year⁻¹ or month⁻¹</span>
+    </div>
+    <p>Used in <strong>incidence density</strong> calculations, especially in cohort studies.</p>
+  </div>
+
+  <!-- SUMMARY TABLE ALL MEASURES -->
+  <div class="content-card">
+    <h3>Summary — All Measures of Association</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Measure</th><th>Formula</th><th>Study Type</th><th>What it tells you</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RR</strong></td><td>a/(a+b) ÷ c/(c+d)</td><td>Cohort</td><td>How many times more likely exposed are to get disease</td></tr>
+          <tr><td><strong>OR</strong></td><td>(a×d)/(b×c)</td><td>Case-control</td><td>Odds of disease in exposed vs. unexposed</td></tr>
+          <tr><td><strong>AR</strong></td><td>I(exp) − I(unexp)</td><td>Cohort</td><td>Excess risk due to exposure</td></tr>
+          <tr><td><strong>AF%</strong></td><td>(I(exp)−I(unexp))/I(exp) ×100</td><td>Cohort</td><td>% of exposed group's disease attributable to exposure</td></tr>
+          <tr><td><strong>PF</strong></td><td>(I(unexp)−I(exp))/I(unexp) ×100</td><td>Cohort</td><td>% of cases prevented by protective exposure</td></tr>
+          <tr><td><strong>PAR</strong></td><td>I(pop) − I(unexposed)</td><td>Both</td><td>Excess risk in whole population from exposure</td></tr>
+          <tr><td><strong>PAF/PAR%</strong></td><td>(I(pop)−I(unexp))/I(pop) ×100</td><td>Both</td><td>% of population's disease attributable to exposure</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET S5 -->
+  <div class="cheatsheet">
+    <h3>⚡ Quick Exam Cheat Sheet — Unit 5</h3>
+    <div class="cheatsheet-grid">
+      <div class="cs-item"><strong>Rate vs Ratio vs Proportion</strong>Rate = time + multiplier, num IN denom · Ratio = num NOT in denom · Proportion = %</div>
+      <div class="cs-item"><strong>Incidence</strong>New cases / population at risk → measures RISK</div>
+      <div class="cs-item"><strong>Prevalence</strong>All existing cases / population → measures BURDEN</div>
+      <div class="cs-item"><strong>Prevalence = Incidence × Duration</strong>High prevalence = high incidence OR prolonged survival</div>
+      <div class="cs-item"><strong>RR → cohort | OR → case-control</strong>Both: =1 no association · &gt;1 positive · &lt;1 protective</div>
+      <div class="cs-item"><strong>AR</strong>I(exposed) − I(unexposed) = excess risk</div>
+      <div class="cs-item"><strong>AF%</strong>AR / I(exposed) × 100 = % due to exposure</div>
+      <div class="cs-item"><strong>PAF</strong>Most useful for population-level resource decisions</div>
+      <div class="cs-item"><strong>95% CI excludes 1</strong>→ statistically significant</div>
+      <div class="cs-item"><strong>p &lt; 0.05</strong>→ statistically significant</div>
+      <div class="cs-item"><strong>CFR "killing power"</strong>Ebola ≈ 90% · Malaria ≈ 10%</div>
+      <div class="cs-item"><strong>Person-time</strong>1 person × 1 year = 1 person-year</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PRACTICE QUESTIONS LINK
+════════════════════════════════════════════════ -->
+<div id="practice-section">
+  <h2>🎯 Test Your Knowledge</h2>
+  <p>Ready to check what you've mastered? Tackle questions across all five units — MCQs, short answers, and case studies.</p>
+  <a href="practice_questions.html" class="practice-btn">Open Practice Question Bank →</a>
+  <div class="topics-covered">
+    <span>Epidemiology Definitions</span>
+    <span>Incidence &amp; Prevalence</span>
+    <span>Surveillance Types</span>
+    <span>RR, OR &amp; AR Calculations</span>
+    <span>Global Health Threats</span>
+    <span>Outbreak Investigation</span>
+    <span>IDSR Kenya</span>
+    <span>CFR &amp; Mortality</span>
+  </div>
+</div>
+
+</div><!-- end .main-wrap -->
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer>
+  <div>
+    <strong>Public Health &amp; Epidemiology — MLS Study Guide</strong><br>
+    Compiled from lecture materials by <strong>Peter Ouma, PhD, MPH, HDMLS</strong><br>
+    Department of Medical Laboratory Sciences · Maseno University School of Medicine
+  </div>
+  <div class="footer-links">
+    <a href="https://www.who.int" target="_blank">WHO</a>
+    <a href="https://www.cdc.gov/epidemiology" target="_blank">CDC Epidemiology</a>
+    <a href="https://www.kemri.go.ke" target="_blank">KEMRI</a>
+    <a href="https://www.merriam-webster.com/medical" target="_blank">Medical Dictionary</a>
+  </div>
+  <div style="margin-top:10px; font-size:11.5px; color:rgba(255,255,255,0.4)">
+    For academic purposes only · Content based on course lecture slides · Always cross-reference with your textbooks and lecture notes.<br>
+    Medical terms linked to external definitions open in a new tab.
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Dashboard toggle
+  function toggleDash() {
+    const panel = document.getElementById('dashboard-panel');
+    const chevron = document.getElementById('dash-chevron');
+    panel.classList.toggle('open');
+    chevron.classList.toggle('open');
+  }
+
+  // Scroll to top button
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scroll-top');
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-70px 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
