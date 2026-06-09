@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Question Bank — Public Health & Epidemiology</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --teal:#0d9488;--teal-light:#ccfbf1;--teal-dark:#0f766e;
+    --navy:#1e3a5f;--navy-mid:#2a4a7a;
+    --gold:#d97706;--gold-light:#fef3c7;
+    --rose:#e11d48;--rose-light:#ffe4e6;
+    --violet:#7c3aed;--violet-light:#ede9fe;
+    --green:#16a34a;--green-light:#dcfce7;
+    --slate:#475569;--slate-light:#f1f5f9;
+    --white:#ffffff;--bg:#f8fafc;--text:#1e293b;--text-muted:#64748b;
+    --border:#e2e8f0;--radius:10px;
+    --shadow:0 4px 24px rgba(0,0,0,0.08);--shadow-sm:0 2px 8px rgba(0,0,0,0.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+
+  /* HEADER */
+  header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 50%,var(--teal-dark) 100%);color:white;padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden}
+  header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+  header .badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#a5f3fc;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:16px}
+  header h1{font-family:'Merriweather',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;line-height:1.3;margin-bottom:12px}
+  header h1 span{color:#5eead4}
+  header p.subtitle{font-size:15px;color:rgba(255,255,255,0.75);max-width:560px;margin:0 auto 24px}
+  .header-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+  .header-meta span{font-size:12px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px}
+  .header-meta span::before{content:'●';color:#5eead4;font-size:8px}
+
+  /* NAV */
+  nav{background:var(--white);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;padding:0 20px;overflow-x:auto;gap:2px;scrollbar-width:none}
+  .nav-inner::-webkit-scrollbar{display:none}
+  nav a{white-space:nowrap;padding:14px 16px;font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;border-bottom:3px solid transparent;transition:all 0.2s;letter-spacing:0.3px}
+  nav a:hover,nav a.active{color:var(--teal-dark);border-bottom-color:var(--teal)}
+
+  /* SCORE DASHBOARD */
+  .score-dashboard{max-width:1100px;margin:24px auto 0;padding:0 20px}
+  .score-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;box-shadow:var(--shadow-sm)}
+  .score-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+  .score-card{background:var(--slate-light);border-radius:8px;padding:14px;text-align:center;border:1px solid var(--border)}
+  .score-card .num{font-size:2rem;font-weight:700;line-height:1;margin-bottom:4px}
+  .score-card .lbl{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px}
+  .score-card.teal{background:var(--teal-light);border-color:var(--teal)}
+  .score-card.teal .num{color:var(--teal-dark)}
+  .score-card.violet{background:var(--violet-light);border-color:var(--violet)}
+  .score-card.violet .num{color:var(--violet)}
+  .score-card.gold{background:var(--gold-light);border-color:var(--gold)}
+  .score-card.gold .num{color:var(--gold)}
+  .dash-bar-wrap{margin-top:4px}
+  .dash-bar-label{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-muted);margin-bottom:5px}
+  .dash-bar{height:7px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:8px}
+  .dash-fill{height:100%;border-radius:10px;transition:width 0.6s ease}
+  .fill-teal{background:linear-gradient(90deg,var(--teal),var(--green))}
+  .fill-violet{background:linear-gradient(90deg,var(--violet),var(--teal))}
+  .fill-gold{background:linear-gradient(90deg,var(--gold),var(--rose))}
+
+  /* MAIN */
+  .main-wrap{max-width:1100px;margin:0 auto;padding:32px 20px 60px}
+
+  /* SECTION HEADER */
+  .section-block{margin-bottom:56px;scroll-margin-top:70px}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid var(--border)}
+  .sec-num{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:white;flex-shrink:0}
+  .num-mcq{background:linear-gradient(135deg,#0d9488,#0f766e)}
+  .num-saq{background:linear-gradient(135deg,#7c3aed,#6d28d9)}
+  .num-laq{background:linear-gradient(135deg,#d97706,#b45309)}
+  .sec-head h2{font-family:'Merriweather',serif;font-size:1.4rem;font-weight:700;color:var(--navy);line-height:1.3}
+  .sec-head .sec-sub{font-size:12.5px;color:var(--text-muted);margin-top:3px}
+
+  .s-mcq{border-left:4px solid var(--teal);padding-left:20px}
+  .s-saq{border-left:4px solid var(--violet);padding-left:20px}
+  .s-laq{border-left:4px solid var(--gold);padding-left:20px}
+
+  /* QUESTION CARDS */
+  .q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:16px;box-shadow:var(--shadow-sm);transition:border-color 0.2s}
+  .q-card.correct{border-color:var(--green);background:#f0fdf4}
+  .q-card.wrong{border-color:var(--rose);background:#fff1f2}
+
+  .q-number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;font-size:11.5px;font-weight:700;color:white;margin-right:10px;flex-shrink:0;vertical-align:middle}
+  .q-mcq .q-number{background:var(--teal)}
+  .q-saq .q-number{background:var(--violet)}
+  .q-laq .q-number{background:var(--gold)}
+
+  .q-text{font-size:14.5px;font-weight:600;color:var(--navy);margin-bottom:14px;line-height:1.6}
+  .q-marks{display:inline-block;font-size:11px;font-weight:600;background:var(--slate-light);color:var(--slate);padding:2px 10px;border-radius:20px;margin-left:8px;vertical-align:middle}
+
+  /* MCQ OPTIONS */
+  .options{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+  .opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.15s;font-size:13.5px;background:var(--white);text-align:left;width:100%}
+  .opt:hover{background:var(--teal-light);border-color:var(--teal)}
+  .opt.selected{background:#dbeafe;border-color:#3b82f6}
+  .opt.correct-ans{background:var(--green-light);border-color:var(--green);color:#14532d}
+  .opt.wrong-ans{background:var(--rose-light);border-color:var(--rose);color:#9f1239}
+  .opt-label{width:22px;height:22px;border-radius:50%;background:var(--slate-light);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;transition:all 0.15s}
+  .opt.correct-ans .opt-label{background:var(--green);border-color:var(--green);color:white}
+  .opt.wrong-ans .opt-label{background:var(--rose);border-color:var(--rose);color:white}
+
+  /* FEEDBACK */
+  .feedback{display:none;margin-top:10px;padding:12px 16px;border-radius:8px;font-size:13.5px;line-height:1.6}
+  .feedback.show{display:block}
+  .feedback.correct{background:var(--green-light);border:1px solid #86efac;color:#14532d}
+  .feedback.incorrect{background:var(--rose-light);border:1px solid #fda4af;color:#9f1239}
+  .feedback strong{display:block;margin-bottom:4px;font-size:12.5px;text-transform:uppercase;letter-spacing:0.4px}
+
+  /* MCQ SUBMIT BUTTON */
+  .check-btn{margin-top:10px;padding:8px 20px;background:var(--navy);color:white;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s}
+  .check-btn:hover{background:var(--teal-dark)}
+  .check-btn:disabled{background:var(--slate);cursor:default;opacity:0.6}
+
+  /* SAQ */
+  .saq-hints{margin-bottom:10px;padding:12px 16px;background:var(--violet-light);border-radius:8px;border:1px solid #c4b5fd}
+  .saq-hints p{font-size:12.5px;color:#4c1d95;font-weight:500}
+  .saq-hints ul{padding-left:18px;font-size:12.5px;color:#4c1d95;margin-top:4px}
+  .saq-hints ul li{margin-bottom:3px}
+  .saq-reveal-btn{padding:8px 20px;background:var(--violet);color:white;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-top:10px}
+  .saq-reveal-btn:hover{background:#6d28d9}
+  .model-answer{display:none;margin-top:12px;padding:14px 18px;background:#f5f3ff;border:1px solid #c4b5fd;border-radius:8px;font-size:13.5px;color:#3b0764;line-height:1.8}
+  .model-answer.show{display:block}
+  .model-answer strong{display:block;color:var(--violet);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+  .model-answer ul{padding-left:18px}
+  .model-answer ul li{margin-bottom:5px}
+
+  /* LAQ */
+  .laq-scenario{background:linear-gradient(135deg,#fef3c7,#fde68a20);border:1.5px solid var(--gold);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+  .laq-scenario .scenario-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:8px}
+  .laq-scenario p{font-size:14px;color:var(--text);line-height:1.7}
+  .laq-parts{display:flex;flex-direction:column;gap:14px}
+  .laq-part{background:var(--slate-light);border-radius:8px;padding:14px 16px;border:1px solid var(--border)}
+  .laq-part-q{font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:8px}
+  .laq-part-marks{font-size:11px;background:var(--gold-light);color:var(--gold);padding:2px 10px;border-radius:20px;font-weight:600;margin-left:6px}
+  .laq-reveal-btn{padding:8px 20px;background:var(--gold);color:white;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-top:12px}
+  .laq-reveal-btn:hover{background:var(--gold)}
+  .laq-answer{display:none;margin-top:12px;padding:16px 18px;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;font-size:13.5px;color:#78350f;line-height:1.8}
+  .laq-answer.show{display:block}
+  .laq-answer strong{color:var(--gold);display:block;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+  .laq-answer ul,.laq-answer ol{padding-left:20px}
+  .laq-answer ul li,.laq-answer ol li{margin-bottom:5px}
+
+  /* CALLOUT */
+  .callout{border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;display:flex;gap:10px;align-items:flex-start}
+  .callout-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+  .callout.info{background:#e0f2fe;border:1px solid #7dd3fc;color:#0c4a6e}
+  .callout.tip{background:var(--green-light);border:1px solid #86efac;color:#14532d}
+
+  /* PROGRESS RESET */
+  .actions-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+  .action-btn{padding:10px 22px;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s}
+  .btn-primary{background:var(--navy);color:white}
+  .btn-primary:hover{background:var(--teal-dark)}
+  .btn-secondary{background:var(--white);color:var(--navy);border:1.5px solid var(--border)}
+  .btn-secondary:hover{background:var(--slate-light)}
+  .btn-rose{background:var(--rose-light);color:var(--rose);border:1.5px solid var(--rose)}
+  .btn-rose:hover{background:var(--rose);color:white}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:12.5px;line-height:1.8}
+  footer strong{color:rgba(255,255,255,0.9)}
+  footer .footer-links{margin:10px 0}
+  footer .footer-links a{color:#5eead4;text-decoration:none;margin:0 10px}
+
+  /* SCROLL TOP */
+  #scroll-top{position:fixed;bottom:28px;right:24px;width:42px;height:42px;background:var(--navy);color:white;border:none;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:var(--shadow);opacity:0;transition:opacity 0.3s,transform 0.2s;z-index:200}
+  #scroll-top.visible{opacity:1}
+  #scroll-top:hover{transform:translateY(-3px);background:var(--teal-dark)}
+
+  @media(max-width:700px){
+    header{padding:32px 16px 28px}
+    .main-wrap{padding:20px 14px 40px}
+    .sec-head{flex-direction:column;gap:10px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">MLS · Maseno University · Exam Prep</div>
+  <h1>Practice <span>Question Bank</span></h1>
+  <p class="subtitle">50 MCQs · 20 Short Answer Questions · 5 Case Studies — with instant validation and model answers</p>
+  <div class="header-meta">
+    <span>75 Questions Total</span>
+    <span>Public Health &amp; Epidemiology</span>
+    <span>Peter Ouma, PhD, MPH</span>
+    <span>Maseno University School of Medicine</span>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html">← Study Guide</a>
+    <a href="#mcq-section">MCQs (50)</a>
+    <a href="#saq-section">Short Answer (20)</a>
+    <a href="#laq-section">Case Studies (5)</a>
+  </div>
+</nav>
+
+<!-- SCORE DASHBOARD -->
+<div class="score-dashboard">
+  <div class="score-panel">
+    <div class="score-grid">
+      <div class="score-card teal">
+        <div class="num" id="mcq-score">0/50</div>
+        <div class="lbl">MCQ Score</div>
+      </div>
+      <div class="score-card violet">
+        <div class="num" id="saq-revealed">0/20</div>
+        <div class="lbl">SAQs Reviewed</div>
+      </div>
+      <div class="score-card gold">
+        <div class="num" id="laq-revealed">0/5</div>
+        <div class="lbl">Case Studies Done</div>
+      </div>
+    </div>
+    <div class="dash-bar-wrap">
+      <div class="dash-bar-label"><span>MCQ Progress</span><span id="mcq-pct">0%</span></div>
+      <div class="dash-bar"><div class="dash-fill fill-teal" id="mcq-bar" style="width:0%"></div></div>
+      <div class="dash-bar-label"><span>SAQ Review</span><span id="saq-pct">0%</span></div>
+      <div class="dash-bar"><div class="dash-fill fill-violet" id="saq-bar" style="width:0%"></div></div>
+      <div class="dash-bar-label"><span>Case Study Completion</span><span id="laq-pct">0%</span></div>
+      <div class="dash-bar"><div class="dash-fill fill-gold" id="laq-bar" style="width:0%"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrap">
+<div class="actions-bar">
+  <button class="action-btn btn-primary" onclick="submitAllMCQ()">✓ Submit All MCQs</button>
+  <button class="action-btn btn-secondary" onclick="revealAllSAQ()">📖 Reveal All SAQ Answers</button>
+  <button class="action-btn btn-secondary" onclick="revealAllLAQ()">📋 Reveal All Case Answers</button>
+  <button class="action-btn btn-rose" onclick="resetAll()">↺ Reset All</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     SECTION A — MCQs
+════════════════════════════════════ -->
+<section class="section-block s-mcq" id="mcq-section">
+  <div class="sec-head">
+    <div class="sec-num num-mcq">A</div>
+    <div>
+      <h2>Section A — Multiple Choice Questions</h2>
+      <div class="sec-sub">50 Questions · 1 Mark Each · Select the BEST answer · Click "Check Answer" after each selection</div>
+    </div>
+  </div>
+
+  <div class="callout info"><div class="callout-icon">ℹ️</div><div>Select one option per question, then click <strong>Check Answer</strong>. Green = correct, Red = incorrect with explanation.</div></div>
+
+  <div id="mcq-container"></div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SECTION B — SHORT ANSWER
+════════════════════════════════════ -->
+<section class="section-block s-saq" id="saq-section">
+  <div class="sec-head">
+    <div class="sec-num num-saq">B</div>
+    <div>
+      <h2>Section B — Short Answer Questions</h2>
+      <div class="sec-sub">20 Questions · 5 Marks Each · 100 Marks Total · Click "Reveal Model Answer" to review</div>
+    </div>
+  </div>
+
+  <div class="callout tip"><div class="callout-icon">✍️</div><div>Attempt each question in your notebook first, then click <strong>Reveal Model Answer</strong> to compare your response.</div></div>
+
+  <div id="saq-container"></div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SECTION C — CASE STUDIES
+════════════════════════════════════ -->
+<section class="section-block s-laq" id="laq-section">
+  <div class="sec-head">
+    <div class="sec-num num-laq">C</div>
+    <div>
+      <h2>Section C — Long Answer Case Studies</h2>
+      <div class="sec-sub">5 Case Studies · 20 Marks Each · 100 Marks Total</div>
+    </div>
+  </div>
+
+  <div class="callout tip"><div class="callout-icon">📋</div><div>Read each clinical/public health scenario carefully. Answer all parts before revealing the model answers.</div></div>
+
+  <div id="laq-container"></div>
+</section>
+
+</div><!-- end main-wrap -->
+
+<footer>
+  <div><strong>Public Health &amp; Epidemiology — Practice Question Bank</strong><br>
+  Compiled from lecture materials by <strong>Peter Ouma, PhD, MPH, HDMLS</strong><br>
+  Department of Medical Laboratory Sciences · Maseno University School of Medicine</div>
+  <div class="footer-links">
+    <a href="index.html">← Back to Study Guide</a>
+    <a href="https://www.who.int" target="_blank">WHO</a>
+    <a href="https://www.cdc.gov/epidemiology" target="_blank">CDC Epidemiology</a>
+  </div>
+  <div style="margin-top:10px;font-size:11.5px;color:rgba(255,255,255,0.4)">For academic purposes only · Always cross-reference with your textbooks and lecture notes.</div>
+</footer>
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// =========================================================
+// DATA — 50 MCQs
+// =========================================================
+const mcqs = [
+  // UNIT 1 — Intro to Epidemiology (Q1–15)
+  {q:"The word 'epidemiology' is derived from Greek words meaning:",opts:["Upon, people, study","Over, disease, treatment","Among, community, prevention","Between, population, medicine"],ans:0,exp:"Epi = upon/among, Demos = people, Logos = study. Epidemiology literally means 'the study among/upon people.'"},
+  {q:"Which of the following BEST defines epidemiology according to Last (1995)?",opts:["The study of biological agents causing disease in individuals","The study of distribution and determinants of health-related events in populations and its application to control health problems","The clinical diagnosis and treatment of infectious diseases","The biological analysis of pathogens in laboratory settings"],ans:1,exp:"Last's definition encompasses three pillars: distribution, determinants, and application — the gold standard definition used in most epidemiology courses."},
+  {q:"The 'three pillars' of epidemiology are:",opts:["Frequency, distribution, determinants","Surveillance, prevention, treatment","Infection, host, environment","Incidence, prevalence, mortality"],ans:0,exp:"The three core pillars are: Disease Frequency (rates & ratios), Distribution (time, place, person), and Determinants (causes and risk factors)."},
+  {q:"John Snow is known as the 'Father of field epidemiology' primarily because he:",opts:["Discovered the cholera bacterium under a microscope","Investigated the 1854 London cholera epidemic using geographic mapping before the germ theory was established","Created the first national disease surveillance system","Developed the first vaccine against cholera"],ans:1,exp:"Snow mapped cholera cases in the Golden Square area of London and linked the outbreak to the contaminated Broad Street water pump — all without a microscope or knowledge of the causative organism."},
+  {q:"William Farr is best remembered as the 'Father of' which field?",opts:["Clinical epidemiology","Tropical medicine","Vital statistics and surveillance","Molecular epidemiology"],ans:2,exp:"William Farr systematically collected and analyzed British mortality statistics and is regarded as the father of modern vital statistics and disease surveillance."},
+  {q:"Which description BEST characterizes 'descriptive epidemiology'?",opts:["It tests hypotheses about causes of disease","It answers WHO, WHERE, and WHEN by describing patterns of disease","It uses randomized controlled trials to evaluate interventions","It identifies causal relationships between exposure and disease"],ans:1,exp:"Descriptive epidemiology describes disease patterns by person, place, and time — generating hypotheses but NOT proving causation."},
+  {q:"A disease that is constantly present at expected levels in a defined population is called:",opts:["Epidemic","Pandemic","Endemic","Sporadic"],ans:2,exp:"Endemic means the disease is consistently present at the usual or expected background level in a specific population or geographic area."},
+  {q:"The epidemiologic triangle consists of:",opts:["Host, Agent, and Environment","Person, Place, and Time","Exposure, Disease, and Outcome","Susceptible, Infected, and Recovered"],ans:0,exp:"The epidemiologic triad (triangle) comprises Host (the person who gets sick), Agent (the causative factor), and Environment (external conditions that facilitate transmission)."},
+  {q:"An epidemic that affects a large proportion of people across a wide geographic area, including national or global spread, is termed a:",opts:["Cluster","Pandemic","Hyperendemic","Epizootic"],ans:1,exp:"A pandemic is an epidemic that has spread over a wide geographic area affecting a large proportion of the population — e.g., COVID-19, H1N1 influenza."},
+  {q:"A 'nosocomial infection' is defined as:",opts:["A zoonotic disease transmitted from animals","An infection that is hospital-acquired and unrelated to the patient's primary condition","An infection that is always caused by antibiotic-resistant organisms","A disease endemic to tropical regions"],ans:1,exp:"Nosocomial (hospital-acquired) infections arise in health care settings, are unrelated to the patient's original diagnosis, and commonly include surgical wound infections, UTIs, and pneumonia."},
+  {q:"Which type of epidemiology uses randomized controlled trials?",opts:["Descriptive","Retrospective","Observational","Experimental"],ans:3,exp:"Experimental epidemiology involves deliberately altering the natural course of events — e.g., through vaccine trials or bed net interventions — and includes RCTs."},
+  {q:"The term 'zoonosis' refers to:",opts:["A disease caused by environmental pollution","An infection transmissible from vertebrate animals to humans under natural conditions","A disease that only occurs in immunocompromised patients","An epidemic confined to a specific occupational group"],ans:1,exp:"Zoonoses are infections that can be transmitted naturally from vertebrate animals to humans. Examples include rabies, plague, and bovine tuberculosis."},
+  {q:"Hippocrates' contribution to epidemiology was:",opts:["He discovered the cholera organism","He created the first mortality tables","He provided the first rational (non-supernatural) explanation of disease, linking it to environment and behavior","He established the first national vaccination program"],ans:2,exp:"Hippocrates (~400 BC) wrote 'On Airs, Waters, and Places,' providing the first rational explanation for disease occurrence based on environment and lifestyle rather than supernatural causes."},
+  {q:"A person who harbors a pathogen and can transmit it but shows no clinical signs of infection is called a:",opts:["Vector","Reservoir","Carrier","Fomite"],ans:2,exp:"A carrier harbors the infectious agent and is capable of transmitting it to others, but does not display clinical signs of the disease — e.g., typhoid carriers."},
+  {q:"The gradients of infection from least to most severe include — in the correct order:",opts:["Colonization → Latent → Subclinical → Manifest","Subclinical → Colonization → Manifest → Latent","Latent → Colonization → Manifest → Subclinical","Manifest → Subclinical → Latent → Colonization"],ans:0,exp:"The progression is: Colonization (no infection) → Subclinical/inapparent infection → Latent infection (dormant) → Manifest/clinical disease (symptomatic)."},
+
+  // UNIT 2 — Public Health (Q16–26)
+  {q:"The WHO (1948) definition of health describes it as:",opts:["The absence of disease and infirmity","A state of complete physical, mental and social well-being and not merely the absence of disease or infirmity","Physical fitness and absence of chronic illness","The ability to perform daily functions without medical assistance"],ans:1,exp:"The WHO 1948 definition is foundational. It is holistic — encompassing physical, mental, AND social well-being — not merely the absence of disease."},
+  {q:"Which of the following is NOT one of the five Social Determinants of Health (SDOH) domains?",opts:["Economic stability","Neighbourhood and built environment","Genetic predisposition","Education access and quality"],ans:2,exp:"The five SDOH domains are: Economic Stability, Education Access, Healthcare Access, Social & Community Context, and Neighbourhood & Built Environment. Genetics is a biological factor, not a social determinant."},
+  {q:"Winslow (1920) defined public health as 'the science and art of preventing disease, prolonging life, and promoting health through':",opts:["Individual clinical interventions","Organized community effort","Government legislation alone","Pharmaceutical research"],ans:1,exp:"Winslow's classic definition emphasizes 'organized community effort' — reflecting the population-based, collective nature of public health."},
+  {q:"The PRIMARY distinction between public health and clinical medicine is:",opts:["Public health only treats infectious diseases","Clinical medicine uses more advanced technology","Public health focuses on populations and prevention; clinical medicine focuses on individual patients and treatment","Public health is practiced only in government settings"],ans:2,exp:"The fundamental distinction: Public health = population-based, prevention-focused, goes to the community. Clinical medicine = individual patient, treatment-focused, patient comes to the clinician."},
+  {q:"The 'river analogy' in public health means:",opts:["Water is the primary source of infectious disease","Public health focuses on treating drowning patients at the riverbank","Clinical doctors treat individual patients while public health goes 'upstream' to prevent illness from occurring","Public health is responsible for water purification only"],ans:2,exp:"The river analogy illustrates that while clinicians are busy pulling sick people from the river (treating disease), public health goes upstream to find and address why people are falling in (prevention)."},
+  {q:"The three core functions of public health identified by the IOM (1988) are:",opts:["Prevention, Treatment, Rehabilitation","Assessment, Policy Development, Assurance","Monitoring, Vaccination, Treatment","Surveillance, Response, Evaluation"],ans:1,exp:"The IOM's three core functions are: Assessment (collecting health data), Policy Development (using evidence to shape policy), and Assurance (ensuring health services reach those who need them)."},
+  {q:"Health equity is best defined as:",opts:["Equal distribution of medical resources to all populations","The absence of all health disparities between groups","The opportunity for everyone to attain their highest health potential with no one disadvantaged due to social circumstances","Providing identical health services to all individuals"],ans:2,exp:"Health equity is about fairness — ensuring that social, economic, and environmental barriers do not prevent anyone from achieving their full health potential. It differs from equality (same treatment) and is about removing disadvantage."},
+  {q:"Which of the following is considered one of the Ten Greatest Public Health Achievements of the 20th century (CDC, 1999)?",opts:["Development of antibiotics","Discovery of DNA structure","Fluoridation of drinking water","Introduction of CT scanning"],ans:2,exp:"CDC's Ten Greatest Achievements include fluoridation of drinking water, vaccination, motor vehicle safety, safer workplaces, and others. Antibiotics and DNA discovery are not on this specific list."},
+  {q:"How many essential public health services are recognized in the standard framework?",opts:["5","7","10","12"],ans:2,exp:"There are 10 Essential Public Health Services, ranging from monitoring health status and diagnosing hazards to enforcing health laws and conducting research."},
+  {q:"Which statement about the life expectancy difference between Sierra Leone and Australia illustrates?",opts:["Biological differences between populations","The impact of social determinants of health on population health outcomes","Superior healthcare technology in Australia","Genetic resistance to disease in Australian populations"],ans:1,exp:"The 33-year difference in life expectancy (Sierra Leone ~50 yrs vs Australia ~83 yrs) primarily reflects differences in SDOH such as poverty, education, sanitation, and healthcare access — not biology."},
+  {q:"Health inequity refers to:",opts:["Any measurable difference in health between two groups","Systematic and unjust distribution of social conditions needed for health","Random variation in disease rates across populations","Differences in access to expensive medical treatments"],ans:1,exp:"Health inequity specifically refers to unfair, systematic, and avoidable differences in health outcomes — caused by unjust distribution of power, resources, and social conditions."},
+
+  // UNIT 3 — Surveillance (Q27–35)
+  {q:"The BEST description of disease surveillance is:",opts:["A one-time survey of disease prevalence in a community","Continuous, systematic collection, analysis, interpretation and dissemination of health data to guide public health action","Laboratory testing of specimens from symptomatic patients only","The investigation of a specific disease outbreak"],ans:1,exp:"Surveillance is defined as the ongoing, systematic process of data collection, analysis, interpretation, and dissemination — forming the 'eyes and ears' of the public health system."},
+  {q:"Which type of surveillance collects data from selected sites that supplement routine reporting and identify missing cases?",opts:["Passive surveillance","Active surveillance","Sentinel surveillance","Syndromic surveillance"],ans:2,exp:"Sentinel surveillance uses selected sites (sentinel sites) to provide high-quality data on specific conditions, supplementing passive surveillance and providing better data quality and timeliness."},
+  {q:"Passive surveillance is characterized by:",opts:["House-to-house surveys for a specific disease","Wide coverage but potentially unreliable and incomplete data from routine reporting","High cost and requires specially trained personnel","Focus on symptoms before diagnosis is confirmed"],ans:1,exp:"Passive surveillance relies on routine reporting by health facilities. It has wide coverage and is inexpensive but tends to be incomplete, unreliable, and not timely."},
+  {q:"Syndromic surveillance differs from other surveillance types because it:",opts:["Requires confirmed laboratory diagnoses before reporting","Focuses on symptoms/clinical syndromes before a diagnosis is confirmed, allowing faster detection","Uses only hospital inpatient data","Is conducted only during declared outbreaks"],ans:1,exp:"Syndromic surveillance monitors clusters of symptoms (syndromes) rather than confirmed diagnoses, enabling faster detection of potential outbreaks — particularly useful in emergency settings."},
+  {q:"Under Kenya's IDSR, cholera is classified as:",opts:["A disease targeted for eradication","An epidemic-prone disease","A disease of general public health importance","A notifiable but non-priority disease"],ans:1,exp:"Under Kenya's IDSR, cholera falls under Category A — Epidemic-Prone Diseases, alongside dysentery, plague, yellow fever, typhoid fever, meningococcal meningitis, and measles."},
+  {q:"The FIRST step when investigating a suspected outbreak is to:",opts:["Implement control measures immediately","Formulate a hypothesis about the cause","Establish that the outbreak actually exists by comparing current incidence with expected levels","Identify all cases through house-to-house surveys"],ans:2,exp:"The first step is to confirm/establish the existence of an outbreak by comparing current case counts with previous data in the same community during the same season to confirm cases exceed expected numbers."},
+  {q:"An epidemic curve is used in outbreak investigation to:",opts:["Determine the exact pathogen causing the outbreak","Map the geographic spread of cases","Display the distribution of cases over time and help identify the likely mode of transmission","Calculate the case fatality rate"],ans:2,exp:"Epidemic curves (epi curves) plot the number of cases over time. Their shape helps distinguish point-source outbreaks, propagated outbreaks, and mixed patterns, and can indicate incubation periods."},
+  {q:"In IDSR, poliomyelitis is classified under:",opts:["Epidemic-prone diseases","Diseases targeted for eradication or elimination","Diseases of general public health importance","Emerging infectious diseases"],ans:1,exp:"Poliomyelitis falls under Category B — Diseases Targeted for Eradication/Elimination, alongside leprosy, guinea worm (dracunculiasis), neonatal tetanus, and trypanosomiasis."},
+  {q:"Active surveillance is particularly indicated when:",opts:["A disease has been endemic for decades","A previously eradicated disease reappears in the community","Passive surveillance provides adequate coverage","Resources are limited and the disease is common"],ans:1,exp:"Active surveillance is used when precision and completeness are essential — particularly for new disease discovery, new transmission modes, eradication programs, or when a previously eliminated disease reappears."},
+
+  // UNIT 4 — Global Health Threats (Q36–42)
+  {q:"Antimicrobial resistance (AMR) is considered a 'One Health' issue because:",opts:["It only affects humans in hospital settings","It affects humans, animals, plants, food, and the environment simultaneously","It is caused exclusively by overuse of antibiotics in humans","It can be solved through a single targeted intervention"],ans:1,exp:"AMR operates across the One Health continuum — affecting human medicine, veterinary medicine, agriculture, food production, and environmental systems simultaneously. It requires multi-sectoral action."},
+  {q:"According to the WHO, which of the following is considered the most significant health threat to humanity in the intermediate term?",opts:["Antimicrobial resistance","Pandemic diseases","Climate change and environmental factors","Non-communicable diseases"],ans:2,exp:"WHO identifies climate change as the most significant health threat facing humanity in the intermediate term, with far-reaching effects on infectious disease spread, vector suitability, food security, and extreme weather events."},
+  {q:"The 'Big Four' NCDs that account for over two-thirds of global deaths are:",opts:["HIV/AIDS, malaria, tuberculosis, and hepatitis","Cardiovascular diseases, cancers, diabetes, and chronic respiratory diseases","Stroke, obesity, kidney disease, and arthritis","Alzheimer's, Parkinson's, multiple sclerosis, and epilepsy"],ans:1,exp:"The Big Four NCDs are: Cardiovascular diseases, Cancers, Diabetes mellitus, and Chronic respiratory diseases. Together they account for >2/3 of all global deaths annually."},
+  {q:"Zoonotic diseases affect approximately how many people and cause how many deaths annually?",opts:["500 million people and 500,000 deaths","1 billion people and 1 million deaths","More than 2 billion people and over 2 million deaths","5 billion people and 5 million deaths"],ans:2,exp:"Zoonotic diseases affect more than 2 billion people and cause over 2 million deaths every year, making them a major global health burden, particularly in developing nations."},
+  {q:"Which percentage of heart diseases, strokes, and type 2 diabetes could be prevented by addressing lifestyle risk factors?",opts:["30%","50%","65%","80%"],ans:3,exp:"Research shows that approximately 80% of heart diseases, strokes, and type 2 diabetes, along with 1/3 of cancers, are preventable through tobacco cessation, healthy diet, physical activity, and reducing harmful alcohol use."},
+  {q:"What proportion of the world's population currently lacks access to essential healthcare?",opts:["10%","25%","At least 50%","75%"],ans:2,exp:"At least 50% of the world's population lacks access to essential health services. Additionally, nearly 100 million people are pushed into extreme poverty each year due to uninsured out-of-pocket medical costs."},
+  {q:"Disease vector suitability increased by approximately what percentage between 1950 and 2018 due to climate change?",opts:["2%","5%","10%","20%"],ans:2,exp:"Research cited by WHO indicates that disease transmission suitability for climate-sensitive vectors increased approximately 10% between 1950 and 2018, contributing to the spread of diseases like dengue and malaria."},
+
+  // UNIT 5 — Morbidity & Mortality (Q43–50)
+  {q:"What distinguishes a RATE from a RATIO in epidemiology?",opts:["A rate includes a time dimension and the numerator is part of the denominator; a ratio does not","A rate is always expressed per 1,000; a ratio per 100","A ratio always involves mortality data; a rate involves morbidity data","There is no practical difference between a rate and a ratio"],ans:0,exp:"A rate includes a time element (e.g., deaths per year) and the numerator is part of the denominator. A ratio compares two quantities where the numerator is NOT part of the denominator."},
+  {q:"Incidence measures:",opts:["The total burden of existing disease in a population at one point in time","The number of new cases of disease in a defined population over a defined time period","The severity of a disease as measured by deaths per cases","The population at risk of acquiring a disease"],ans:1,exp:"Incidence counts only NEW cases occurring during a defined time period in a population at risk. It measures the RISK of developing disease."},
+  {q:"The formula for calculating Relative Risk (RR) in a cohort study is:",opts:["(a × d) / (b × c)","[a/(a+b)] ÷ [c/(c+d)]","(a+b) / (c+d)","a / (a + c)"],ans:1,exp:"RR = Incidence in exposed group ÷ Incidence in unexposed group = [a/(a+b)] ÷ [c/(c+d)]. The cross-product formula (ad/bc) is for the Odds Ratio, used in case-control studies."},
+  {q:"An Odds Ratio (OR) of 1.0 indicates:",opts:["Strong positive association between exposure and disease","Strong protective effect of the exposure","No association between exposure and disease","The study was statistically significant"],ans:2,exp:"OR = 1.0 means the odds of disease in the exposed group are identical to the odds in the unexposed group — there is NO association between the exposure and the outcome."},
+  {q:"The Attributable Risk (AR) tells us:",opts:["The probability of developing disease given exposure","The excess risk of disease in the exposed group directly attributable to the exposure","The proportion of all cases in the population attributable to the exposure","How many times more likely the exposed group is to develop disease"],ans:1,exp:"AR (also called Risk Difference) = Incidence(exposed) − Incidence(unexposed). It quantifies the EXCESS risk in the exposed group that is directly due to the exposure itself, after subtracting background risk."},
+  {q:"A 95% confidence interval for a Relative Risk that includes the value 1.0 indicates:",opts:["Strong evidence of a causal association","Statistically significant result","No statistically significant association between exposure and disease","The study had very high statistical power"],ans:2,exp:"If the 95% CI for RR or OR includes 1.0, there is no statistically significant association — 1.0 represents 'no difference,' and spanning it means we cannot rule out the null hypothesis."},
+  {q:"The Case Fatality Rate (CFR) is best described as:",opts:["The proportion of a population that dies from all causes in a given year","The proportion of people diagnosed with a specific disease who die from it — measuring the 'killing power' of the disease","The death rate in the general population per 100,000","The number of deaths prevented by a specific intervention"],ans:1,exp:"CFR = (Deaths from disease / Diagnosed cases in same period) × 100. It measures the severity/lethality of a disease — Ebola CFR ≈ 90% vs. malaria ≈ 10% illustrates this well."},
+  {q:"Which measure of association is MOST appropriate for evaluating the population-level impact of eliminating an exposure?",opts:["Relative Risk (RR)","Odds Ratio (OR)","Population Attributable Fraction (PAF)","Attributable Fraction % (AF%)"],ans:2,exp:"The Population Attributable Fraction (PAF) estimates the proportion of disease cases in the ENTIRE population attributable to the exposure — making it the most useful measure for prioritizing public health interventions at population level."}
+];
+
+// =========================================================
+// DATA — 20 SAQs
+// =========================================================
+const saqs = [
+  {q:"Define epidemiology and explain its three core pillars. (5 marks)",hints:["Definition with key authors (Gordis/Last)","Pillar 1: Disease Frequency","Pillar 2: Distribution (time, place, person)","Pillar 3: Determinants","Application aspect"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Definition (2 marks):</strong> Epidemiology is the study of the distribution and determinants of health-related events in populations and the application of this study to control health problems (Last, 1995). The word derives from Greek: epi (upon/among) + demos (people) + logos (study).</li>
+<li><strong>Three core pillars (3 marks):</strong>
+  <ol style="margin-top:6px">
+    <li><strong>Disease Frequency:</strong> Quantifying disease using rates, ratios, and proportions — measuring incidence and mortality.</li>
+    <li><strong>Distribution:</strong> Describing patterns of disease by Person (who gets sick — age, sex, SES), Place (where it occurs — geography, environment), and Time (when it occurs — secular trends, seasonality).</li>
+    <li><strong>Determinants:</strong> Identifying the causes and risk factors that explain why disease occurs more in some groups than others, enabling prevention and control.</li>
+  </ol>
+</li>
+</ul>`},
+  {q:"Compare and contrast descriptive and analytic epidemiology. Give one example of each. (5 marks)",hints:["Purpose of descriptive epi","Purpose of analytic epi","Study types for each","Example for each"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Descriptive epidemiology (2 marks):</strong> Describes disease patterns by person, place, and time. Answers WHO?, WHERE?, and WHEN? It generates hypotheses but does NOT identify causes. Example: A cross-sectional survey describing malaria prevalence by age group and district in Kenya.</li>
+<li><strong>Analytic epidemiology (2 marks):</strong> Tests hypotheses about why disease occurs. Answers WHY? by examining the relationship between exposures and outcomes using observational (cohort, case-control) or experimental designs. Example: A cohort study following smokers and non-smokers over 10 years to determine lung cancer risk (Doll & Hill).</li>
+<li><strong>Key distinction (1 mark):</strong> Descriptive = hypothesis-generating; Analytic = hypothesis-testing. Descriptive observes patterns; Analytic explains causes.</li>
+</ul>`},
+  {q:"Explain the epidemiological significance of John Snow's investigation of the 1854 London cholera epidemic. (5 marks)",hints:["Context: pre-germ theory era","Method: spot/dot maps","Finding: Broad Street pump","Action taken: pump handle removed","Methodological legacy"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Context (1 mark):</strong> The investigation occurred before the microscope and germ theory. Snow could not identify the causative organism but used epidemiological reasoning to identify the source.</li>
+<li><strong>Method (1 mark):</strong> Snow systematically interviewed cases and plotted them on a spot map, visualizing the geographic clustering of cases around the Broad Street water pump.</li>
+<li><strong>Finding (1 mark):</strong> He identified the contaminated Broad Street pump as the source of the outbreak by demonstrating that people who used that pump were disproportionately affected.</li>
+<li><strong>Action (1 mark):</strong> He had the pump handle removed, and the epidemic subsided — the first documented public health intervention based on epidemiologic evidence.</li>
+<li><strong>Legacy (1 mark):</strong> Snow's stepwise approach (describe → hypothesize → analyze → act) is the template still used today, earning him the title 'Father of Field Epidemiology.'</li>
+</ul>`},
+  {q:"Distinguish between endemic, epidemic, pandemic, and sporadic disease patterns with one example of each. (5 marks)",hints:["Endemic definition + example","Epidemic definition + example","Pandemic definition + example","Sporadic definition + example"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Endemic (1.5 marks):</strong> Disease constantly present at expected background levels in a defined population. Example: Malaria in sub-Saharan Africa.</li>
+<li><strong>Epidemic (1 mark):</strong> Unusual occurrence of disease in excess of expected numbers in a defined area/time. Example: 2014 Ebola outbreak in West Africa.</li>
+<li><strong>Pandemic (1 mark):</strong> An epidemic affecting large proportions over wide geographic areas — national, continental, or global. Example: COVID-19 (2019–present), H1N1 Influenza (2009).</li>
+<li><strong>Sporadic (1.5 marks):</strong> Cases occurring irregularly, infrequently, and scattered with little connection between them. Example: Meningococcal meningitis in Kenya — isolated cases without clear clustering.</li>
+</ul>`},
+  {q:"Outline the WHO definition of health and explain why it was a significant departure from previous definitions. (5 marks)",hints:["State the exact WHO 1948 definition","Previous definition = absence of disease only","Three dimensions introduced","Historical context (World Health Day)","Limitation/criticism of WHO definition"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>WHO Definition (2 marks):</strong> "Health is a state of complete physical, mental and social well-being and not merely the absence of disease or infirmity" (WHO, 1948).</li>
+<li><strong>Previous definitions (1 mark):</strong> Prior to 1948, health was largely defined negatively — as the absence of disease or disability — focusing only on the biological/physical dimension.</li>
+<li><strong>Significance (2 marks):</strong>
+  <ul>
+    <li>Introduced a positive, holistic concept covering three dimensions: physical, mental, AND social.</li>
+    <li>Recognized that social and psychological well-being are integral to health, not just biological status.</li>
+    <li>Became the foundation for World Health Day and guided global public health policy for decades.</li>
+    <li>Limitation: "Complete" well-being is arguably unattainable, leading to criticism that the definition is idealistic.</li>
+  </ul>
+</li>
+</ul>`},
+  {q:"List and briefly explain the five Social Determinants of Health (SDOH) domains. (5 marks)",hints:["Domain 1: Economic stability","Domain 2: Education access","Domain 3: Healthcare access","Domain 4: Social & community context","Domain 5: Neighbourhood & built environment"],ans:`<strong>Model Answer (1 mark per domain)</strong>
+<ol>
+<li><strong>Economic Stability:</strong> Employment, income, poverty, and financial security directly affect ability to afford food, housing, healthcare, and other health-promoting resources.</li>
+<li><strong>Education Access and Quality:</strong> Education level influences health literacy, income potential, occupational choices, and ability to make informed health decisions.</li>
+<li><strong>Healthcare Access and Quality:</strong> Availability, affordability, and quality of health services determine whether people can obtain preventive care and treatment when needed.</li>
+<li><strong>Social and Community Context:</strong> Social support networks, community cohesion, discrimination, and social integration influence mental and physical health outcomes.</li>
+<li><strong>Neighbourhood and Built Environment:</strong> Housing quality, air and water quality, access to healthy foods, transportation, and neighborhood safety all directly influence health.</li>
+</ol>`},
+  {q:"Define surveillance in public health. Describe its four key activities and explain why it is important. (5 marks)",hints:["Definition (ongoing, systematic)","Activity 1: Data collection","Activity 2: Analysis","Activity 3: Interpretation","Activity 4: Dissemination → Action","Importance: early warning, trend monitoring"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Definition (1 mark):</strong> Surveillance is the continuous, systematic collection, analysis, interpretation, and dissemination of health data to guide public health action in the control, prevention, and investigation of disease.</li>
+<li><strong>Four key activities (2 marks):</strong>
+  <ol>
+    <li>Data collection — gathering disease reports, laboratory results, and health event data.</li>
+    <li>Analysis — identifying trends, patterns, and anomalies in the data.</li>
+    <li>Interpretation — explaining the significance of findings in context.</li>
+    <li>Dissemination — communicating findings to those who can act on them.</li>
+  </ol>
+</li>
+<li><strong>Importance (2 marks):</strong> Surveillance serves as the early warning system for outbreaks; differentiates endemic, epidemic, and pandemic events; documents intervention impact; guides resource allocation; provides baseline data for program evaluation; and supports evidence-based public health decision-making.</li>
+</ul>`},
+  {q:"Compare passive and active surveillance, highlighting their advantages and disadvantages. (5 marks)",hints:["Passive: definition, advantage, disadvantage","Active: definition, advantage, disadvantage","When to use each"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Passive Surveillance (2 marks):</strong> Routine data collection as part of normal service provision — health facilities report to the next level. <em>Advantages:</em> Wide geographic coverage, inexpensive, no special arrangements required. <em>Disadvantages:</em> Unreliable, incomplete, and inaccurate data; misses patients who don't seek care; not always timely.</li>
+<li><strong>Active Surveillance (2 marks):</strong> Specifically designed data collection for a particular disease over a limited time — includes house-to-house surveys and assigned health workers. <em>Advantages:</em> Complete, accurate, and timely data. <em>Disadvantages:</em> Expensive, requires organization and skilled personnel, short-term, targeted at specific diseases.</li>
+<li><strong>When to use active (1 mark):</strong> Active surveillance is indicated when: a new disease is discovered, a previously eradicated disease reappears, an eradication program is underway, or when a disease appears in a new subgroup.</li>
+</ul>`},
+  {q:"List Kenya's 18 IDSR priority diseases across the three categories. (5 marks)",hints:["Category A: epidemic-prone (7 diseases)","Category B: eradication-targeted (5 diseases)","Category C: public health importance (6+)"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Category A — Epidemic-Prone Diseases (2 marks):</strong> Cholera · Dysentery · Plague · Yellow Fever · Typhoid Fever · Meningococcal Meningitis · Measles</li>
+<li><strong>Category B — Diseases Targeted for Eradication/Elimination (1.5 marks):</strong> Leprosy · Poliomyelitis · Dracunculiasis (Guinea worm) · Neonatal Tetanus · Trypanosomiasis</li>
+<li><strong>Category C — Diseases of Public Health Importance (1.5 marks):</strong> Malaria · New AIDS Cases · Tuberculosis · Childhood Pneumonia · Childhood Diarrhoea · STIs · Avian Influenza and other emerging infections</li>
+</ul>`},
+  {q:"Distinguish between incidence and prevalence. Give one worked example of each. (5 marks)",hints:["Incidence: definition, formula, measures risk","Prevalence: definition, formula, measures burden","Worked example incidence","Worked example prevalence","Key relationship formula"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Incidence (2 marks):</strong> The number of NEW cases of disease arising in a defined population at risk over a defined time period. Formula: New cases / Population at risk × 100. Measures RISK of developing disease. <em>Example:</em> 100 out of 189 diabetic men died over 13 years → Risk = 100/189 × 100 = 52.9%.</li>
+<li><strong>Prevalence (2 marks):</strong> The proportion of a population that HAS the disease at a specified point in time (point prevalence) or during a time period. Formula: Persons with disease / Total population. Measures BURDEN of disease. <em>Example:</em> 200 of 4,000 people surveyed in Tana River district tested positive for schistosomiasis → Prevalence = 200/4,000 × 100 = 5%.</li>
+<li><strong>Key relationship (1 mark):</strong> Prevalence = Incidence × Duration of disease. High prevalence may reflect high incidence OR prolonged disease duration OR both.</li>
+</ul>`},
+  {q:"Explain the 2×2 contingency table used in epidemiology. Define all four cells (a, b, c, d). (5 marks)",hints:["Draw/describe the table","Define cell a","Define cell b","Define cell c","Define cell d","How it's used for RR/OR"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Structure (1 mark):</strong> The 2×2 table cross-tabulates exposure status (yes/no) against disease status (yes/no) in a study population.</li>
+<li><strong>Cell definitions (3 marks):</strong>
+  <ul>
+    <li><strong>a</strong> = Exposed AND diseased (cases who were exposed)</li>
+    <li><strong>b</strong> = Exposed but NOT diseased (exposed non-cases)</li>
+    <li><strong>c</strong> = NOT exposed but diseased (unexposed cases)</li>
+    <li><strong>d</strong> = NOT exposed and NOT diseased (unexposed non-cases)</li>
+  </ul>
+</li>
+<li><strong>Use (1 mark):</strong> The 2×2 table is the foundation for calculating measures of association: RR = [a/(a+b)] ÷ [c/(c+d)] in cohort studies; OR = (a×d)/(b×c) in case-control studies.</li>
+</ul>`},
+  {q:"Define Relative Risk (RR) and explain how to interpret RR values of 1.0, >1.0, and <1.0. (5 marks)",hints:["Definition of RR","Formula for RR","RR = 1.0 interpretation","RR > 1.0 interpretation","RR < 1.0 interpretation","Study type used"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Definition (1 mark):</strong> Relative Risk (RR) is the ratio of the incidence of disease in the exposed group to the incidence in the unexposed group. It measures the strength of association between exposure and outcome.</li>
+<li><strong>Formula (1 mark):</strong> RR = Incidence(exposed) / Incidence(unexposed) = [a/(a+b)] ÷ [c/(c+d)]. Used in cohort (prospective) studies.</li>
+<li><strong>Interpretation (3 marks):</strong>
+  <ul>
+    <li><strong>RR = 1.0:</strong> No association — the risk is identical in exposed and unexposed groups; exposure makes no difference.</li>
+    <li><strong>RR > 1.0:</strong> Positive association — exposed individuals are MORE likely to develop disease. E.g., RR = 5 means exposed are 5× more likely to get the disease.</li>
+    <li><strong>RR < 1.0:</strong> Negative association — exposure is PROTECTIVE. E.g., RR = 0.5 means exposed are half as likely to develop the outcome (e.g., vaccinated vs. unvaccinated).</li>
+  </ul>
+</li>
+</ul>`},
+  {q:"Explain the Odds Ratio (OR), the formula used to calculate it, and when it is preferred over Relative Risk. (5 marks)",hints:["Definition of OR","OR formula: (ad)/(bc)","When to use (case-control)","Interpretation same as RR","Example or limitation"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Definition (1 mark):</strong> The Odds Ratio is the ratio of the odds of disease in the exposed group to the odds of disease in the unexposed group.</li>
+<li><strong>Formula (1 mark):</strong> OR = (a × d) / (b × c) from the 2×2 table, where a = exposed cases, b = exposed controls, c = unexposed cases, d = unexposed controls.</li>
+<li><strong>When preferred (1 mark):</strong> OR is used in case-control (retrospective) studies where the population at risk is unknown, making it impossible to directly calculate incidence rates needed for RR.</li>
+<li><strong>Interpretation (1 mark):</strong> Interpreted similarly to RR: OR = 1 (no association), OR > 1 (positive/increased risk), OR < 1 (protective). When disease is rare, OR approximates RR.</li>
+<li><strong>Example (1 mark):</strong> In a case-control study of MMR vaccine and autism: OR = (130×135)/(115×120) = 1.27 — a very weak, non-significant association.</li>
+</ul>`},
+  {q:"Define Attributable Risk (AR) and Attributable Fraction (AF%). How are they different, and what does each measure? (5 marks)",hints:["AR definition and formula","AF% definition and formula","What AR measures","What AF% measures","Worked example for both"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Attributable Risk — AR (2 marks):</strong> Also called Risk Difference or Excess Risk. AR = Incidence(exposed) − Incidence(unexposed). It measures the EXCESS risk of disease in the exposed group attributable directly to the exposure after subtracting background risk. E.g., fast driving risk = 0.050, slow driving = 0.010 → AR = 0.040 (4 extra deaths per 100 due to fast driving).</li>
+<li><strong>Attributable Fraction — AF% (2 marks):</strong> Also called Attributable Proportion or Etiologic Fraction. AF% = [I(exp) − I(unexp)] / I(exp) × 100. It expresses AR as a percentage of the total risk in the exposed group — answering: "What PROPORTION of disease among the exposed is due to the exposure?" E.g., (0.050 − 0.010)/0.050 × 100 = 80% of accidents among fast drivers are attributable to speeding.</li>
+<li><strong>Key difference (1 mark):</strong> AR is an absolute measure (number of cases); AF% is a relative/proportional measure (%). AR tells you how many cases to prevent; AF% tells you the fraction caused by the exposure.</li>
+</ul>`},
+  {q:"Define Case Fatality Rate (CFR) and explain its public health significance with examples. (5 marks)",hints:["CFR definition","CFR formula","What it measures (severity)","High vs low CFR examples","Use in public health"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Definition (1 mark):</strong> The Case Fatality Rate (CFR) is the proportion of people diagnosed with a specific disease who die from it. It is described as a measure of the 'killing power' of a disease.</li>
+<li><strong>Formula (1 mark):</strong> CFR = (Deaths from disease in a given period / Diagnosed cases in the same period) × 100.</li>
+<li><strong>What it measures (1 mark):</strong> CFR measures the SEVERITY (lethality/virulence) of a disease, NOT its frequency in the population. A high CFR means the disease is highly fatal once acquired.</li>
+<li><strong>Examples (1 mark):</strong>
+  <ul>
+    <li>Ebola (West Africa): 90 deaths / 100 admitted = CFR 90% — extremely severe.</li>
+    <li>Malaria (Siaya, 1998): 20 deaths / 200 admitted = CFR 10% — less severe but significant.</li>
+    <li>Seasonal influenza: CFR < 0.1% — low severity despite high incidence.</li>
+  </ul>
+</li>
+<li><strong>Public health significance (1 mark):</strong> CFR guides resource allocation and disease prioritization, helps assess treatment effectiveness, and informs emergency response planning. A rising CFR signals deteriorating clinical management or emergence of more virulent strains.</li>
+</ul>`},
+  {q:"Discuss the concept of 'One Health' and its relevance to global health threats. (5 marks)",hints:["Definition of One Health","Human-animal-environment interconnection","Zoonotic diseases link","AMR example","Agriculture & food safety example"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Definition (1 mark):</strong> One Health is an integrated, multidisciplinary approach that recognizes the health of humans, animals, and the environment are deeply interconnected and must be addressed together.</li>
+<li><strong>Interconnections (1 mark):</strong> Most emerging infectious diseases originate from animals (zoonoses). Human encroachment into natural habitats, livestock farming practices, and climate change all create new pathways for pathogens to jump from animals to humans.</li>
+<li><strong>Zoonotic diseases (1 mark):</strong> Zoonoses affect >2 billion people and cause >2 million deaths annually. Examples include Ebola, HIV (simian origin), SARS-CoV-2, avian influenza, and Rift Valley Fever — all arising from the animal-human interface.</li>
+<li><strong>AMR (1 mark):</strong> AMR is a prime One Health issue. Antibiotic overuse in livestock passes resistant genes into the environment and food chains, creating resistance that affects human medicine.</li>
+<li><strong>Relevance (1 mark):</strong> Addressing global health threats requires collaboration across human medicine, veterinary science, agriculture, food safety, and environmental management — no single sector can achieve health security alone.</li>
+</ul>`},
+  {q:"Outline the major strategies for addressing Non-Communicable Diseases (NCDs) globally. (5 marks)",hints:["Lifestyle modification","Policy interventions","Healthcare system strengthening","International cooperation","Monitoring and surveillance"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Lifestyle promotion (1 mark):</strong> Public education campaigns promoting tobacco cessation, physical activity, healthy diets, and reduction of harmful alcohol use. Research shows 80% of cardiovascular disease and type 2 diabetes + 1/3 of cancers are preventable through these measures.</li>
+<li><strong>Policy interventions (1 mark):</strong> Taxes on tobacco and alcohol; restrictions on marketing unhealthy foods to children; food labeling policies; urban planning to promote physical activity (cycle lanes, green spaces).</li>
+<li><strong>Healthcare system strengthening (1 mark):</strong> Expanding access to preventive health services, early screening and detection (e.g., cancer screening), and Universal Health Coverage (UHC) to ensure treatment access.</li>
+<li><strong>International cooperation (1 mark):</strong> Global advocacy through WHO, FCTC (Framework Convention on Tobacco Control), and SDG targets. Robust monitoring of NCD trends and evaluation of interventions.</li>
+<li><strong>Addressing modifiable risk factors (1 mark):</strong> Targeting the four shared modifiable risk factors: tobacco use, physical inactivity, unhealthy diet, and harmful use of alcohol — which together underlie the Big Four NCDs.</li>
+</ul>`},
+  {q:"Explain the concept of Statistical significance in epidemiology including p-values and confidence intervals. (5 marks)",hints:["Definition of statistical significance","p-value definition and threshold","95% CI definition","How to interpret CI for RR/OR","Example with values"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Statistical significance (1 mark):</strong> A result is statistically significant when the observed association is unlikely to have occurred by chance alone. In epidemiology, the conventional threshold is a 5% probability (p < 0.05).</li>
+<li><strong>p-value (1 mark):</strong> The probability that the observed association occurred by chance assuming no true effect. A p-value < 0.05 means there is less than a 5% probability the result is due to chance → statistically significant. A very small p-value (e.g., p = 0.001) indicates a very strong result unlikely to be chance.</li>
+<li><strong>Confidence Interval (1 mark):</strong> The 95% CI is a range of values within which we are 95% confident the true population parameter (RR or OR) lies. It also reflects precision — a narrow CI indicates a more precise estimate.</li>
+<li><strong>Interpretation (1 mark):</strong> If the 95% CI for RR/OR EXCLUDES 1.0 → statistically significant association. If it INCLUDES 1.0 → not statistically significant (cannot rule out chance).</li>
+<li><strong>Example (1 mark):</strong> Gonorrhea and tubal infertility: OR = 2.4, 95% CI 1.3–4.4, p = 0.004 → significant (CI excludes 1.0). Herpes: OR = 0.9, 95% CI 0.5–1.8, p = 0.80 → NOT significant (CI includes 1.0).</li>
+</ul>`},
+  {q:"Outline the key differences between public health and clinical/medical approaches to health. (5 marks)",hints:["Unit of analysis: population vs individual","Focus: prevention vs treatment","Patient interaction","Perspective on disease","Epidemiologist vs clinician role"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>Unit of analysis (1 mark):</strong> Public health focuses on POPULATIONS and communities; clinical medicine focuses on INDIVIDUAL patients.</li>
+<li><strong>Primary focus (1 mark):</strong> Public health prioritizes PREVENTION of disease before it occurs; clinical medicine prioritizes DIAGNOSIS and TREATMENT of existing disease.</li>
+<li><strong>Patient interaction (1 mark):</strong> In public health, the epidemiologist/health worker GOES TO the community. In clinical medicine, the PATIENT comes to the clinician — meaning clinicians only see those who present for care (the 'tip of the iceberg').</li>
+<li><strong>Perspective (1 mark):</strong> Public health views the full population base of disease — including asymptomatic and non-seeking individuals. Clinical medicine operates at the tip of the iceberg — only seeing patients who present.</li>
+<li><strong>Respective interests (1 mark):</strong> Public health is interested in the source of infection, modes of spread, and population trends. Clinical medicine is interested in individual diagnosis, treatment outcome, and prognosis.</li>
+</ul>`},
+  {q:"Describe the Population Attributable Risk (PAR) and Population Attributable Fraction (PAF). Why are these measures important for public health decision-making? (5 marks)",hints:["PAR definition and formula","PAF definition and formula","Difference from AR and AF%","Public health use","Example with interpretation"],ans:`<strong>Model Answer</strong>
+<ul>
+<li><strong>PAR (1.5 marks):</strong> Population Attributable Risk is the excess rate of disease in the total population attributable to the exposure. PAR = Incidence(total population) − Incidence(unexposed). Unlike AR (which applies to exposed individuals only), PAR considers EVERYONE in the population.</li>
+<li><strong>PAF (1.5 marks):</strong> Population Attributable Fraction expresses PAR as a percentage of the total population incidence. PAF = [I(pop) − I(unexposed)] / I(pop) × 100. In case-control studies: PAF = (1 − 1/OR) × Pc, where Pc = proportion of cases who were exposed.</li>
+<li><strong>Importance for PH (2 marks):</strong>
+  <ul>
+    <li>PAF identifies which exposures, if eliminated, would have the GREATEST impact on disease burden in the whole population.</li>
+    <li>Example: 44% of driving deaths attributed to fast driving vs. 22% to drunk driving → targeting speed limits would prevent more deaths at population level, even if drunk driving carries higher individual risk.</li>
+    <li>Essential for prioritizing limited public health resources toward interventions with maximum population impact.</li>
+  </ul>
+</li>
+</ul>`}
+];
+
+// =========================================================
+// DATA — 5 Case Studies (LAQs)
+// =========================================================
+const laqs = [
+  {
+    title:"Case Study 1 — Cholera Outbreak in Mombasa County",
+    marks:20,
+    scenario:`In October, a district health officer in Mombasa County receives reports of an unusual cluster of acute watery diarrhoea cases from two sub-counties. Within 72 hours, 45 cases with 3 deaths have been recorded. The affected persons are mainly residents of an informal settlement with shared water points. Stool cultures from 10 patients return positive for Vibrio cholerae O1 El Tor.`,
+    parts:[
+      {q:"a) How would you confirm this is a cholera outbreak and establish a case definition?",marks:4},
+      {q:"b) Describe the steps you would take to investigate this outbreak systematically.",marks:6},
+      {q:"c) Calculate the Case Fatality Rate (CFR) for this outbreak and interpret its significance.",marks:4},
+      {q:"d) Outline immediate control and prevention measures you would implement.",marks:6}
+    ],
+    ans:`<strong>Model Answer — 20 Marks</strong>
+<ol>
+<li><strong>(a) Confirming the outbreak and case definition (4 marks):</strong>
+  <ul>
+    <li>Compare current incidence with expected baseline for the area and season (2 marks).</li>
+    <li>Confirm outbreak: 45 cases in 72 hours in a localized area exceeds expected endemic levels — consistent with a point-source outbreak.</li>
+    <li>Case definition (2 marks): A suspected cholera case = any person aged ≥5 years presenting with acute profuse watery diarrhoea, with or without vomiting, from Mombasa County informal settlements between [date range]. A confirmed case = suspected case with stool culture positive for Vibrio cholerae O1 El Tor.</li>
+  </ul>
+</li>
+<li><strong>(b) Systematic outbreak investigation steps (6 marks):</strong>
+  <ol>
+    <li>Establish existence and confirm diagnosis — done: culture-confirmed.</li>
+    <li>Activate the outbreak response team and notify county/national levels.</li>
+    <li>Conduct active case finding: house-to-house survey in the affected settlement.</li>
+    <li>Describe cases by time (epidemic curve), place (spot map of cases and water points), and person (age, sex, SES, water source used).</li>
+    <li>Identify the source and mode of transmission — investigate shared water points; collect water samples for testing.</li>
+    <li>Formulate and test hypothesis: suspected contaminated communal water point → waterborne transmission.</li>
+    <li>Collect environmental samples from suspected water sources.</li>
+    <li>Write and disseminate a situation report to health authorities.</li>
+  </ol>
+</li>
+<li><strong>(c) CFR calculation and interpretation (4 marks):</strong>
+  <ul>
+    <li>CFR = Deaths / Confirmed cases × 100 = 3/45 × 100 = <strong>6.7%</strong> (2 marks).</li>
+    <li>Interpretation (2 marks): A CFR of 6.7% is significantly above the WHO benchmark of <1% for cholera in well-managed settings. This suggests delayed health-seeking, inadequate access to oral rehydration therapy or IV fluids, or overwhelmed health facilities. Indicates need to strengthen case management and access to care. Global cholera CFR target is <1%.</li>
+  </ul>
+</li>
+<li><strong>(d) Control and prevention measures (6 marks):</strong>
+  <ul>
+    <li>Immediately close/disinfect the contaminated water point (2 marks).</li>
+    <li>Establish oral rehydration points (ORP) near the settlement; ensure IV fluids for severe cases (1 mark).</li>
+    <li>Health education on handwashing with soap, water treatment (chlorination/boiling), safe food handling (1 mark).</li>
+    <li>Chlorination of remaining water sources; distribute water treatment chemicals (1 mark).</li>
+    <li>Set up cholera treatment centre (CTC) and enhance case management capacity (0.5 marks).</li>
+    <li>Activate enhanced surveillance and continue active case finding; continue reporting (0.5 marks).</li>
+  </ul>
+</li>
+</ol>`
+  },
+  {
+    title:"Case Study 2 — Non-Communicable Disease Burden in Kisumu County",
+    marks:20,
+    scenario:`A health survey in Kisumu County finds that out of 10,000 adults surveyed, 1,200 have been diagnosed with hypertension. In a follow-up cohort of 5,000 adults without hypertension at baseline, 250 develop hypertension over the next 5 years. National data suggests the hypertension prevalence nationally is 24%. Risk factor analysis shows that among hypertensive patients, 780 are obese and 420 are non-obese. Among non-hypertensive persons, 1,760 are obese and 6,040 are non-obese.`,
+    parts:[
+      {q:"a) Calculate the prevalence of hypertension in Kisumu County from the survey data.",marks:3},
+      {q:"b) Calculate the 5-year incidence of hypertension in the follow-up cohort.",marks:3},
+      {q:"c) Using the data provided, construct a 2×2 table and calculate the Odds Ratio (OR) for obesity and hypertension.",marks:7},
+      {q:"d) Interpret the OR and suggest public health interventions based on your finding.",marks:7}
+    ],
+    ans:`<strong>Model Answer — 20 Marks</strong>
+<ol>
+<li><strong>(a) Prevalence calculation (3 marks):</strong>
+  <ul>
+    <li>Prevalence = Persons with disease / Total persons × 100</li>
+    <li>= 1,200 / 10,000 × 100 = <strong>12%</strong></li>
+    <li>This is below the national prevalence of 24%, which may suggest lower detection rates or younger population in Kisumu. (1 mark interpretation)</li>
+  </ul>
+</li>
+<li><strong>(b) Incidence calculation (3 marks):</strong>
+  <ul>
+    <li>Incidence = New cases / Population at risk × 100</li>
+    <li>= 250 / 5,000 × 100 = <strong>5% over 5 years</strong> (i.e., 1% per year)</li>
+    <li>The denominator is correctly restricted to those at risk (without hypertension at baseline).</li>
+  </ul>
+</li>
+<li><strong>(c) 2×2 table and OR calculation (7 marks):</strong>
+  <ul>
+    <li>2×2 Table (3 marks):
+      <br>• a (obese + hypertensive) = 780
+      <br>• b (obese + no hypertension) = 1,760
+      <br>• c (not obese + hypertensive) = 420
+      <br>• d (not obese + no hypertension) = 6,040
+    </li>
+    <li>OR formula (1 mark): OR = (a × d) / (b × c)</li>
+    <li>OR = (780 × 6,040) / (1,760 × 420)</li>
+    <li>= 4,711,200 / 739,200 = <strong>OR ≈ 6.37</strong> (3 marks)</li>
+  </ul>
+</li>
+<li><strong>(d) Interpretation and interventions (7 marks):</strong>
+  <ul>
+    <li>Interpretation (3 marks): OR = 6.37 (>1) indicates a strong positive association between obesity and hypertension. Obese individuals have approximately 6.4 times the odds of developing hypertension compared to non-obese individuals. This is a clinically and statistically meaningful association.</li>
+    <li>Public health interventions (4 marks):
+      <ol>
+        <li>Community weight management programs — promote physical activity (walking groups, community sports facilities).</li>
+        <li>Nutrition education — reduce dietary sodium, increase fruit and vegetable intake; counter ultra-processed food consumption.</li>
+        <li>Policy-level interventions — taxation on sugar-sweetened beverages; mandatory nutritional labeling; urban planning for safe walking/cycling spaces.</li>
+        <li>Screening programs — routine BMI and blood pressure screening at primary health care level for early detection and management.</li>
+        <li>Address SDOH — target poverty, food insecurity, and education barriers that drive obesity in low-income settings.</li>
+      </ol>
+    </li>
+  </ul>
+</li>
+</ol>`
+  },
+  {
+    title:"Case Study 3 — Immunization Coverage and Measles Outbreak",
+    marks:20,
+    scenario:`A district in western Kenya reports 80 confirmed measles cases within 6 weeks among children aged 1–5 years. Vaccination coverage data from the last national survey showed only 52% of eligible children in the district received the MMR vaccine. Nationally, coverage was 78%. Epidemiological investigation reveals 65 of the 80 cases were unvaccinated. Five children were hospitalized with complications; two died. The population of eligible children in the district is 12,000.`,
+    parts:[
+      {q:"a) Calculate the attack rate for measles in this district. Discuss its significance.",marks:4},
+      {q:"b) Calculate the Case Fatality Rate (CFR) for this outbreak. What does this tell you?",marks:3},
+      {q:"c) Using the data available, estimate vaccine efficacy (VE). Use the appropriate epidemiological measure.",marks:7},
+      {q:"d) Outline the surveillance and response measures you would recommend.",marks:6}
+    ],
+    ans:`<strong>Model Answer — 20 Marks</strong>
+<ol>
+<li><strong>(a) Attack rate and significance (4 marks):</strong>
+  <ul>
+    <li>Attack rate = (Cases / Population at risk) × 100</li>
+    <li>= (80 / 12,000) × 100 = <strong>0.67%</strong> (2 marks)</li>
+    <li>Significance (2 marks): Although the absolute attack rate appears low, 80 cases in 6 weeks in a district with known low vaccine coverage constitutes an outbreak. Measles is classified under Category A (epidemic-prone) in Kenya's IDSR. At 52% coverage — well below the ≥95% herd immunity threshold — the susceptible pool is large, placing the community at ongoing risk of continued transmission.</li>
+  </ul>
+</li>
+<li><strong>(b) CFR calculation (3 marks):</strong>
+  <ul>
+    <li>CFR = Deaths / Cases × 100 = 2/80 × 100 = <strong>2.5%</strong> (2 marks)</li>
+    <li>Interpretation (1 mark): A CFR of 2.5% is significantly above the expected CFR of <0.1% in high-income settings. This reflects inadequate nutritional status, vitamin A deficiency, delayed care-seeking, or poor case management — consistent with a low-resource district setting. Indicates need for improved case management and nutritional support.</li>
+  </ul>
+</li>
+<li><strong>(c) Vaccine Efficacy estimation (7 marks):</strong>
+  <ul>
+    <li>Use Prevented Fraction / Vaccine Efficacy formula (2 marks): VE = (ARu − ARv) / ARu × 100, where ARu = attack rate in unvaccinated, ARv = attack rate in vaccinated.</li>
+    <li>Vaccinated children = 52% of 12,000 = 6,240; Unvaccinated = 5,760</li>
+    <li>Cases in unvaccinated = 65; Cases in vaccinated = 80 − 65 = 15 (2 marks)</li>
+    <li>ARu = 65/5,760 × 100 = 1.13%</li>
+    <li>ARv = 15/6,240 × 100 = 0.24%</li>
+    <li>VE = (1.13 − 0.24) / 1.13 × 100 = <strong>78.8%</strong> (3 marks)</li>
+    <li>Interpretation: The MMR vaccine in this context was approximately 79% effective in preventing measles — consistent with real-world efficacy for a single MMR dose.</li>
+  </ul>
+</li>
+<li><strong>(d) Surveillance and response measures (6 marks):</strong>
+  <ol>
+    <li>Activate the district rapid response team and notify KEMRI/MOH (1 mark).</li>
+    <li>Conduct active case finding in the community using IDSR reporting channels (1 mark).</li>
+    <li>Launch emergency catch-up immunization campaign targeting all unvaccinated and under-vaccinated children aged 6 months–15 years in the district (1 mark).</li>
+    <li>Administer Vitamin A supplementation to all measles cases to reduce morbidity and mortality (1 mark).</li>
+    <li>Isolate cases to prevent further transmission; provide supportive care for complications (0.5 marks).</li>
+    <li>Communicate risk to the community; address vaccine hesitancy; engage community health workers (0.5 marks).</li>
+    <li>Review and strengthen routine immunization systems to achieve and sustain ≥95% coverage long-term (1 mark).</li>
+  </ol>
+</li>
+</ol>`
+  },
+  {
+    title:"Case Study 4 — Occupational Exposure and Lung Cancer Risk",
+    marks:20,
+    scenario:`A cohort study follows 2,000 workers in a textile factory for 20 years. At baseline, 800 workers are classified as heavily exposed to cotton dust and 1,200 are in the unexposed (administrative) group. At the end of the study, 120 workers in the exposed group develop pulmonary fibrosis and 36 workers in the unexposed group develop the same condition. A case-control sub-study also finds: among 156 pulmonary fibrosis cases, 120 were heavily exposed; among 1,844 non-cases, 680 were exposed.`,
+    parts:[
+      {q:"a) Calculate the Relative Risk (RR) for pulmonary fibrosis among heavily exposed workers.",marks:5},
+      {q:"b) Calculate the Attributable Risk (AR) and Attributable Fraction % (AF%).",marks:5},
+      {q:"c) From the case-control sub-study data, calculate and interpret the Odds Ratio (OR).",marks:5},
+      {q:"d) Compare your RR and OR findings and discuss their public health implications.",marks:5}
+    ],
+    ans:`<strong>Model Answer — 20 Marks</strong>
+<ol>
+<li><strong>(a) Relative Risk calculation (5 marks):</strong>
+  <ul>
+    <li>Incidence in exposed = 120/800 = 0.150 (15.0%) (1 mark)</li>
+    <li>Incidence in unexposed = 36/1,200 = 0.030 (3.0%) (1 mark)</li>
+    <li>RR = 0.150 / 0.030 = <strong>5.0</strong> (2 marks)</li>
+    <li>Interpretation (1 mark): Workers heavily exposed to cotton dust are 5 times more likely to develop pulmonary fibrosis compared to unexposed workers. This is a strong positive association.</li>
+  </ul>
+</li>
+<li><strong>(b) AR and AF% (5 marks):</strong>
+  <ul>
+    <li>AR = I(exposed) − I(unexposed) = 0.150 − 0.030 = <strong>0.120</strong> (12 per 100 workers) (2 marks)</li>
+    <li>Interpretation of AR: 12 out of every 100 exposed workers developed pulmonary fibrosis solely due to cotton dust exposure.</li>
+    <li>AF% = (0.150 − 0.030) / 0.150 × 100 = 0.120 / 0.150 × 100 = <strong>80%</strong> (2 marks)</li>
+    <li>Interpretation of AF% (1 mark): 80% of the pulmonary fibrosis cases in the exposed group are attributable to cotton dust exposure. Only 20% would have occurred in the absence of exposure.</li>
+  </ul>
+</li>
+<li><strong>(c) Odds Ratio from case-control data (5 marks):</strong>
+  <ul>
+    <li>2×2 table (2 marks): a (exposed cases) = 120; b (exposed non-cases) = 680; c (unexposed cases) = 36; d (unexposed non-cases) = 1,164</li>
+    <li>OR = (a × d) / (b × c) = (120 × 1,164) / (680 × 36) (2 marks)</li>
+    <li>= 139,680 / 24,480 = <strong>OR ≈ 5.71</strong></li>
+    <li>Interpretation (1 mark): OR = 5.71 — exposed workers have approximately 5.7 times the odds of pulmonary fibrosis compared to unexposed workers. Since pulmonary fibrosis is not a rare disease in this cohort, the OR overestimates the RR (5.0).</li>
+  </ul>
+</li>
+<li><strong>(d) Comparison and public health implications (5 marks):</strong>
+  <ul>
+    <li>Comparison (2 marks): The RR (5.0) from the cohort study is the preferred and more accurate measure. The OR (5.71) overestimates the RR because pulmonary fibrosis prevalence exceeds 10% in this study, violating the 'rare disease assumption' needed for OR ≈ RR. When disease is common, OR always overestimates RR.</li>
+    <li>Public health implications (3 marks):
+      <ol>
+        <li>Occupational safety: Introduce engineering controls to reduce cotton dust levels below permissible exposure limits. Provide personal protective equipment (respirators/masks) to all exposed workers.</li>
+        <li>Health monitoring: Implement regular lung function testing (spirometry) for all factory workers annually.</li>
+        <li>Policy: Enforce occupational health regulations; textile factories should comply with WHO/ILO cotton dust exposure standards.</li>
+        <li>Compensation and support: Workers who develop pulmonary fibrosis due to occupational exposure are entitled to compensation under occupational injury provisions.</li>
+      </ol>
+    </li>
+  </ul>
+</li>
+</ol>`
+  },
+  {
+    title:"Case Study 5 — Global Health Threat: AMR and Tuberculosis Co-epidemic",
+    marks:20,
+    scenario:`A county referral hospital in Nairobi reports a 40% treatment failure rate for TB patients over the past 2 years. Genotypic drug sensitivity testing reveals 35% of new TB cases are Multi-Drug Resistant (MDR-TB), requiring 18–24 months of second-line therapy costing 100× more than first-line regimens. Of 500 TB patients, 175 are HIV co-infected. Patients from informal settlements account for 72% of cases. The hospital has only 3 trained MDR-TB specialists covering a catchment population of 800,000.`,
+    parts:[
+      {q:"a) Analyse the epidemiological factors contributing to this MDR-TB crisis.",marks:5},
+      {q:"b) Calculate the prevalence of MDR-TB and HIV-TB co-infection in this cohort, and discuss the significance of these findings.",marks:5},
+      {q:"c) Relate this case to two global health threats covered in this unit and explain how they intersect.",marks:5},
+      {q:"d) Propose a comprehensive public health response to address both the immediate crisis and long-term prevention.",marks:5}
+    ],
+    ans:`<strong>Model Answer — 20 Marks</strong>
+<ol>
+<li><strong>(a) Epidemiological factors contributing to MDR-TB (5 marks):</strong>
+  <ul>
+    <li>Incomplete treatment courses (1 mark): Patients stopping treatment early when they feel better — primary driver of resistance selection. Inadequate directly observed therapy (DOT) supervision.</li>
+    <li>Health system failures (1 mark): Inadequate diagnostic capacity leading to late diagnosis; lack of trained personnel (only 3 specialists for 800,000 people); drug supply chain interruptions.</li>
+    <li>Social determinants (1 mark): 72% of cases from informal settlements — overcrowding facilitates transmission; malnutrition reduces immunity; poverty impairs healthcare access and medication adherence.</li>
+    <li>HIV co-infection (1 mark): 35% HIV-TB co-infection dramatically increases susceptibility, accelerates progression, and complicates management — immune suppression allows TB reactivation.</li>
+    <li>Transmission of resistant strains (1 mark): Overcrowded living conditions and congregate settings (prisons, shelters) enable direct transmission of already-resistant M. tuberculosis strains between individuals.</li>
+  </ul>
+</li>
+<li><strong>(b) Prevalence calculations and significance (5 marks):</strong>
+  <ul>
+    <li>MDR-TB prevalence in new cases (1.5 marks): 35% as stated. In absolute numbers: 35% × 500 = 175 MDR-TB cases in this cohort.</li>
+    <li>HIV-TB co-infection prevalence (1.5 marks): 175/500 × 100 = <strong>35%</strong></li>
+    <li>Significance (2 marks):
+      <ul>
+        <li>35% MDR-TB is far above the global average of ~3.3% for new cases — represents a catastrophic drug resistance level suggesting sustained transmission of resistant strains.</li>
+        <li>35% HIV-TB co-infection: HIV is the single biggest risk factor for developing active TB disease. This dual epidemic places enormous strain on healthcare resources and worsens both treatment outcomes and mortality.</li>
+        <li>100× higher treatment cost for MDR-TB is unsustainable for the county health budget and threatens Universal Health Coverage goals.</li>
+      </ul>
+    </li>
+  </ul>
+</li>
+<li><strong>(c) Relation to global health threats (5 marks):</strong>
+  <ul>
+    <li>Threat 2 — Antimicrobial Resistance (2.5 marks): This case is a direct manifestation of AMR. MDR-TB is caused by resistance to rifampicin and isoniazid — the two most powerful first-line anti-TB drugs. AMR demands urgent One Health approaches: responsible antibiotic stewardship, infection control, new drug research, and systems strengthening. The 100× cost differential threatens health equity and financial sustainability.</li>
+    <li>Threat 6 — Health Inequities (2.5 marks): 72% of cases from informal settlements reflects the SDOH driving this epidemic — poverty, overcrowding, malnutrition, and limited healthcare access. Chronic shortage of specialists (3 for 800,000 population) epitomizes the health workforce inequity between urban/rural and rich/poor settings. Health inequity is both a cause and consequence of the MDR-TB crisis.</li>
+  </ul>
+</li>
+<li><strong>(d) Comprehensive public health response (5 marks):</strong>
+  <ul>
+    <li>Immediate response (2 marks):
+      <ol>
+        <li>Scale up Genotypic DST testing for all new TB cases to rapidly identify MDR cases.</li>
+        <li>Establish dedicated MDR-TB treatment units with trained personnel; task-shift some MDR-TB management to trained nurses and pharmacists under specialist supervision.</li>
+        <li>Ensure uninterrupted second-line drug supply through national TB program procurement.</li>
+        <li>Integrate HIV testing and ART initiation for all TB patients (TB-HIV collaborative care).</li>
+      </ol>
+    </li>
+    <li>Long-term prevention (3 marks):
+      <ol>
+        <li>Strengthen TB infection control in all health facilities and congregate settings (prisons, shelters).</li>
+        <li>Expand community-based DOT programs with community health workers to ensure adherence.</li>
+        <li>Address social determinants: improve housing in informal settlements; TB nutritional support programs; income support for patients on long treatment courses.</li>
+        <li>Advocacy for national and international financing for MDR-TB treatment and research into shorter regimens (e.g., BPaL — bedaquiline, pretomanid, linezolid).</li>
+        <li>Strengthen surveillance — IDSR notification; molecular epidemiology to track resistant strain clusters and transmission networks.</li>
+      </ol>
+    </li>
+  </ul>
+</li>
+</ol>`
+  }
+];
+
+// =========================================================
+// RENDER MCQs
+// =========================================================
+let mcqState = new Array(mcqs.length).fill(null); // null = not answered, true/false
+let mcqAnswered = new Array(mcqs.length).fill(false);
+
+function renderMCQ() {
+  const container = document.getElementById('mcq-container');
+  container.innerHTML = '';
+  mcqs.forEach((q, i) => {
+    const labels = ['A','B','C','D'];
+    const optsHtml = q.opts.map((o, j) => `
+      <button class="opt" id="opt-${i}-${j}" onclick="selectOpt(${i},${j})">
+        <span class="opt-label">${labels[j]}</span>
+        <span>${o}</span>
+      </button>`).join('');
+    container.innerHTML += `
+      <div class="q-card q-mcq" id="qcard-${i}">
+        <div class="q-text"><span class="q-number">${i+1}</span>${q.q}<span class="q-marks">1 mark</span></div>
+        <div class="options">${optsHtml}</div>
+        <button class="check-btn" id="check-${i}" onclick="checkMCQ(${i})" disabled>Check Answer</button>
+        <div class="feedback" id="fb-${i}"></div>
+      </div>`;
+  });
+}
+
+function selectOpt(qIdx, optIdx) {
+  if (mcqAnswered[qIdx]) return;
+  const labels = ['A','B','C','D'];
+  mcqs[qIdx].opts.forEach((_, j) => {
+    const btn = document.getElementById(`opt-${qIdx}-${j}`);
+    btn.classList.remove('selected');
+  });
+  document.getElementById(`opt-${qIdx}-${optIdx}`).classList.add('selected');
+  mcqState[qIdx] = optIdx;
+  document.getElementById(`check-${qIdx}`).disabled = false;
+}
+
+function checkMCQ(qIdx) {
+  if (mcqAnswered[qIdx]) return;
+  const selected = mcqState[qIdx];
+  if (selected === null) return;
+  mcqAnswered[qIdx] = true;
+  const q = mcqs[qIdx];
+  const card = document.getElementById(`qcard-${qIdx}`);
+  const fb = document.getElementById(`fb-${qIdx}`);
+  const checkBtn = document.getElementById(`check-${qIdx}`);
+  checkBtn.disabled = true;
+
+  const labels = ['A','B','C','D'];
+  q.opts.forEach((_, j) => {
+    const btn = document.getElementById(`opt-${qIdx}-${j}`);
+    btn.classList.remove('selected');
+    if (j === q.ans) btn.classList.add('correct-ans');
+    else if (j === selected && j !== q.ans) btn.classList.add('wrong-ans');
+    btn.onclick = null;
+    btn.style.cursor = 'default';
+  });
+
+  const correct = selected === q.ans;
+  card.classList.add(correct ? 'correct' : 'wrong');
+  fb.classList.add('show', correct ? 'correct' : 'incorrect');
+  fb.innerHTML = `<strong>${correct ? '✅ Correct!' : `❌ Incorrect — Correct answer: ${labels[q.ans]}. ${q.opts[q.ans]}`}</strong>${q.exp}`;
+
+  updateScores();
+}
+
+function submitAllMCQ() {
+  mcqs.forEach((_, i) => {
+    if (!mcqAnswered[i] && mcqState[i] !== null) checkMCQ(i);
+  });
+}
+
+// =========================================================
+// RENDER SAQs
+// =========================================================
+let saqRevealed = 0;
+
+function renderSAQ() {
+  const container = document.getElementById('saq-container');
+  container.innerHTML = '';
+  saqs.forEach((q, i) => {
+    const hintsHtml = q.hints.map(h => `<li>${h}</li>`).join('');
+    container.innerHTML += `
+      <div class="q-card q-saq" id="saqcard-${i}">
+        <div class="q-text"><span class="q-number">${i+1}</span>${q.q}</div>
+        <div class="saq-hints">
+          <p>📌 Key points to address:</p>
+          <ul>${hintsHtml}</ul>
+        </div>
+        <button class="saq-reveal-btn" id="saqbtn-${i}" onclick="revealSAQ(${i})">📖 Reveal Model Answer</button>
+        <div class="model-answer" id="saqans-${i}">${q.ans}</div>
+      </div>`;
+  });
+}
+
+function revealSAQ(idx) {
+  const el = document.getElementById(`saqans-${idx}`);
+  const btn = document.getElementById(`saqbtn-${idx}`);
+  if (!el.classList.contains('show')) {
+    el.classList.add('show');
+    btn.textContent = '🔼 Hide Answer';
+    btn.style.background = '#6d28d9';
+    saqRevealed++;
+    updateScores();
+  } else {
+    el.classList.remove('show');
+    btn.textContent = '📖 Reveal Model Answer';
+    btn.style.background = '';
+    saqRevealed = Math.max(0, saqRevealed - 1);
+    updateScores();
+  }
+}
+
+function revealAllSAQ() {
+  saqs.forEach((_, i) => {
+    const el = document.getElementById(`saqans-${i}`);
+    const btn = document.getElementById(`saqbtn-${i}`);
+    if (!el.classList.contains('show')) {
+      el.classList.add('show');
+      btn.textContent = '🔼 Hide Answer';
+      btn.style.background = '#6d28d9';
+    }
+  });
+  saqRevealed = saqs.length;
+  updateScores();
+}
+
+// =========================================================
+// RENDER LAQs
+// =========================================================
+let laqRevealed = 0;
+
+function renderLAQ() {
+  const container = document.getElementById('laq-container');
+  container.innerHTML = '';
+  laqs.forEach((q, i) => {
+    const partsHtml = q.parts.map(p => `
+      <div class="laq-part">
+        <div class="laq-part-q">${p.q}<span class="laq-part-marks">${p.marks} marks</span></div>
+      </div>`).join('');
+    container.innerHTML += `
+      <div class="q-card q-laq" id="laqcard-${i}" style="margin-bottom:24px">
+        <div class="q-text"><span class="q-number">${i+1}</span>${q.title}<span class="q-marks">${q.marks} marks</span></div>
+        <div class="laq-scenario">
+          <div class="scenario-label">📋 Clinical/Epidemiological Scenario</div>
+          <p>${q.scenario}</p>
+        </div>
+        <div class="laq-parts">${partsHtml}</div>
+        <button class="laq-reveal-btn" id="laqbtn-${i}" onclick="revealLAQ(${i})">📋 Reveal Model Answer</button>
+        <div class="laq-answer" id="laqans-${i}">${q.ans}</div>
+      </div>`;
+  });
+}
+
+function revealLAQ(idx) {
+  const el = document.getElementById(`laqans-${idx}`);
+  const btn = document.getElementById(`laqbtn-${idx}`);
+  if (!el.classList.contains('show')) {
+    el.classList.add('show');
+    btn.textContent = '🔼 Hide Answer';
+    btn.style.background = '#b45309';
+    laqRevealed++;
+    updateScores();
+  } else {
+    el.classList.remove('show');
+    btn.textContent = '📋 Reveal Model Answer';
+    btn.style.background = '';
+    laqRevealed = Math.max(0, laqRevealed - 1);
+    updateScores();
+  }
+}
+
+function revealAllLAQ() {
+  laqs.forEach((_, i) => {
+    const el = document.getElementById(`laqans-${i}`);
+    const btn = document.getElementById(`laqbtn-${i}`);
+    if (!el.classList.contains('show')) {
+      el.classList.add('show');
+      btn.textContent = '🔼 Hide Answer';
+      btn.style.background = '#b45309';
+    }
+  });
+  laqRevealed = laqs.length;
+  updateScores();
+}
+
+// =========================================================
+// UPDATE DASHBOARD SCORES
+// =========================================================
+function updateScores() {
+  const correctCount = mcqAnswered.filter((a, i) => a && mcqState[i] === mcqs[i].ans).length;
+  const answeredCount = mcqAnswered.filter(Boolean).length;
+  const pct = answeredCount > 0 ? Math.round((correctCount / 50) * 100) : 0;
+
+  document.getElementById('mcq-score').textContent = `${correctCount}/${answeredCount}`;
+  document.getElementById('mcq-pct').textContent = pct + '%';
+  document.getElementById('mcq-bar').style.width = pct + '%';
+
+  const saqPct = Math.round((saqRevealed / 20) * 100);
+  document.getElementById('saq-revealed').textContent = `${saqRevealed}/20`;
+  document.getElementById('saq-pct').textContent = saqPct + '%';
+  document.getElementById('saq-bar').style.width = saqPct + '%';
+
+  const laqPct = Math.round((laqRevealed / 5) * 100);
+  document.getElementById('laq-revealed').textContent = `${laqRevealed}/5`;
+  document.getElementById('laq-pct').textContent = laqPct + '%';
+  document.getElementById('laq-bar').style.width = laqPct + '%';
+}
+
+// =========================================================
+// RESET ALL
+// =========================================================
+function resetAll() {
+  if (!confirm('Reset all answers and scores? This cannot be undone.')) return;
+  mcqState = new Array(mcqs.length).fill(null);
+  mcqAnswered = new Array(mcqs.length).fill(false);
+  saqRevealed = 0;
+  laqRevealed = 0;
+  renderMCQ();
+  renderSAQ();
+  renderLAQ();
+  updateScores();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// =========================================================
+// NAV ACTIVE + SCROLL TOP
+// =========================================================
+window.addEventListener('scroll', () => {
+  document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 400);
+});
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, {threshold:0.2, rootMargin:'-70px 0px -60% 0px'});
+sections.forEach(s => observer.observe(s));
+
+// =========================================================
+// INIT
+// =========================================================
+renderMCQ();
+renderSAQ();
+renderLAQ();
+updateScores();
+</script>
+</body>
+</html>
